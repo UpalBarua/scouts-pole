@@ -16,7 +16,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/test', testRoutes);
+app.use('/api/test', testRoutes);
 
 mongoClient
   .connect()
