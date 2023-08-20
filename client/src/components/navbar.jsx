@@ -1,6 +1,5 @@
 const Navbar = () => {
-  // TODO - navigation bar : atif
-  return <div>DummyComponent</div>;
+  return <div>Navbar</div>;
 };
 
 export default Navbar;
