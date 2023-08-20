@@ -1,7 +1,9 @@
-import DummyComponent from '../components/dummy-component';
-
-const HomePage = () => {
-  return <DummyComponent />;
+const home = () => {
+  return (
+    <div>
+      
+    </div>
+  );
 };
 
-export default HomePage;
+export default home;
