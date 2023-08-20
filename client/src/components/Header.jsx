@@ -1,15 +1,14 @@
 import { Menu, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { Link } from "react-router-dom";
-export default function Navbar() {
+export default function Header() {
   return (
     <>
       <div className="flex justify-between items-center px-6 md:px-4 lg:px-2">
         <div>
           <Link to="/">
             <h3 className="flex font-medium text-black">
-              Scouts{" "}
-              <span className="text-purple-600 font-bold pl-1">Pole</span>
+              Scouts <span className="text-purple-600 font-bold">Pole</span>
             </h3>
           </Link>
         </div>
@@ -32,19 +31,19 @@ export default function Navbar() {
         <div className="sm:hidden top-16 w-56 text-right pt-5">
           <Menu as="div" className="relative inline-block text-left">
             <div>
-              <Menu.Button className="-mt-2">
+              <Menu.Button className="">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-6 h-6"
+                  className="w-8 h-8"
                 >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                    d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
                   />
                 </svg>
               </Menu.Button>
@@ -59,43 +58,25 @@ export default function Navbar() {
               leaveTo="transform opacity-0 scale-95"
             >
               <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-2 px-4">
+                <div className="px-1 py-1 flex-col">
                   <Menu.Item>
-                    <Link to="/">
-                      <button>Home</button>
-                    </Link>
+                    <button>Contact Us</button>
+                  </Menu.Item>
+                  <Menu.Item>
+                  <button>Contact Us</button>
                   </Menu.Item>
                 </div>
-                <div className="py-2 px-4">
+                <div className="px-1 py-1">
                   <Menu.Item>
-                    <Link to="/">
-                      {" "}
-                      <button>Pole</button>
-                    </Link>
+                  <button>Pole Us</button>
+                  </Menu.Item>
+                  <Menu.Item>
+                  <button>History</button>
                   </Menu.Item>
                 </div>
-                <div className="py-2 px-4">
+                <div className="px-1 py-1">
                   <Menu.Item>
-                    <Link to="/">
-                      {" "}
-                      <button>History</button>
-                    </Link>
-                  </Menu.Item>
-                </div>
-                <div className="py-2 px-4">
-                  <Menu.Item>
-                    <Link to="/">
-                      {" "}
-                      <button>About</button>
-                    </Link>
-                  </Menu.Item>
-                </div>
-                <div className="py-2 px-4">
-                  <Menu.Item>
-                    <Link to="/">
-                      {" "}
-                      <button>Delete</button>
-                    </Link>
+                  <button>Add</button>
                   </Menu.Item>
                 </div>
               </Menu.Items>
@@ -106,3 +87,4 @@ export default function Navbar() {
     </>
   );
 }
+
