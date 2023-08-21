@@ -1,12 +1,14 @@
-import { RouterProvider } from 'react-router-dom';
-import router from './router/router';
-import { AuthProvider } from './contexts/auth-context';
+import { RouterProvider } from "react-router-dom";
+import { AuthProvider } from "./contexts/auth-context";
+import router from "./router/router";
 
 const App = () => {
   return (
-    <AuthProvider>
-      <RouterProvider router={router} />;
-    </AuthProvider>
+    <div className="container mx-auto">
+      <AuthProvider>
+        <RouterProvider router={router} />;
+      </AuthProvider>
+    </div>
   );
 };
 
