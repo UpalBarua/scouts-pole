@@ -12,7 +12,7 @@ const contributors = [
 
 const Footer = () => {
   return (
-    <div className="container">
+    <div className="container flex justify-between py-5">
 
       {/* footer left content */}
       <div className="">
@@ -24,7 +24,20 @@ const Footer = () => {
 
       {/* footer center content */}
       <div className="center">
-        <p className="text-xl capitalize">Let's meet our contributors</p>
+        <p className="mb-2 text-xl font-bold capitalize">quick links</p>
+        <ul className="flex gap-3 ">
+          <li>Go top</li>
+          <li>link 0</li>
+          <li>link 1</li>
+          <li>link 2</li>
+          <li>link 3</li>
+        </ul>
+
+      </div>
+
+      {/* footer right content */}
+      <div className="right">
+        <p className="mb-2 text-xl font-bold capitalize">Let's meet our contributors</p>
         <div className="flex">
           {
             contributors.map((person, index) => (
@@ -35,9 +48,6 @@ const Footer = () => {
           }
         </div>
       </div>
-
-      {/* footer right content */}
-      <div className="right"></div>
     </div>
   );
 };
