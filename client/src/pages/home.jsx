@@ -1,9 +1,9 @@
-import Polecard from '../components/pole-card';
+import PoleCard from '../components/pole-card';
 
 const home = () => {
   return (
     <div>
-      <Polecard></Polecard>
+      <PoleCard></PoleCard>
     </div>
   );
 };
