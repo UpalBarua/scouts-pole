@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 export default function Navbar() {
   return (
     <>
-      <div className="flex justify-between items-center px-6 md:px-4 lg:px-2">
+      <div className="flex items-center justify-between px-6 md:px-4 lg:px-2">
         <div>
           <Link to="/">
             <h3 className="flex font-medium text-black">
               Scouts{" "}
-              <span className="text-purple-600 font-bold pl-1">Pole</span>
+              <span className="pl-1 font-bold text-purple-600">Pole</span>
             </h3>
           </Link>
         </div>
-        <div className="hidden sm:block pt-2">
+        <div className="hidden pt-2 sm:block">
           <ul className="flex">
             <li className="px-2 py-2">
               <Link>Home</Link>
@@ -29,7 +29,7 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <div className="sm:hidden top-16 w-56 text-right pt-5">
+        <div className="w-56 pt-5 text-right sm:hidden top-16">
           <Menu as="div" className="relative inline-block text-left">
             <div>
               <Menu.Button className="-mt-2">
@@ -58,15 +58,15 @@ export default function Navbar() {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div className="py-2 px-4">
+              <Menu.Items className="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div className="px-4 py-2">
                   <Menu.Item>
                     <Link to="/">
                       <button>Home</button>
                     </Link>
                   </Menu.Item>
                 </div>
-                <div className="py-2 px-4">
+                <div className="px-4 py-2">
                   <Menu.Item>
                     <Link to="/">
                       {" "}
@@ -74,7 +74,7 @@ export default function Navbar() {
                     </Link>
                   </Menu.Item>
                 </div>
-                <div className="py-2 px-4">
+                <div className="px-4 py-2">
                   <Menu.Item>
                     <Link to="/">
                       {" "}
@@ -82,7 +82,7 @@ export default function Navbar() {
                     </Link>
                   </Menu.Item>
                 </div>
-                <div className="py-2 px-4">
+                <div className="px-4 py-2">
                   <Menu.Item>
                     <Link to="/">
                       {" "}
@@ -90,7 +90,7 @@ export default function Navbar() {
                     </Link>
                   </Menu.Item>
                 </div>
-                <div className="py-2 px-4">
+                <div className="px-4 py-2">
                   <Menu.Item>
                     <Link to="/">
                       {" "}
