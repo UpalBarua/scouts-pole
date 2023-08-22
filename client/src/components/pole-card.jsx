@@ -16,15 +16,13 @@ const { options, question, discription } = INFORMATION
 
 
 const Polecard = () => {
+
   const [selected, setSelected] = useState(null)
-
-
   // Submit button fucn ==>
   const handleSubmit = () => {
     if (!selected) {
       return console.log('No option selected');
     }
-
     else {
       console.log('Selected value:', selected);
       setSelected(null);
@@ -32,12 +30,8 @@ const Polecard = () => {
   }
 
 
-
-
-
   return (
     <div className="w-full m-0 mx-auto ">
-      {/* Disciption eikhane thakbe      */}
       <div className="mx-auto w-full max-w-2xl rounded-md bg-[#1f1f38]   p-[5%] ">
         <h1 className='mb-6 font-semibold text-center text-white text-md md:text-2xl '>{question}</h1>
 
