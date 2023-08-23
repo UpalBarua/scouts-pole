@@ -3,6 +3,7 @@ import RootLayout from "../layouts/root-layout";
 import HomePage from "../pages/home";
 import SignUp from "../Registration/SignUp/SignUp";
 import SignIn from "../Registration/SignIn/SignIn";
+import NewPole from "../pages/NewPole/NewPole";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/sign-in",
         element: <SignIn />,
+      },
+      {
+        path: "/new-pole",
+        element: <NewPole />,
       },
     ],
   },
