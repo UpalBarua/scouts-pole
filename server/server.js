@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import mongoClient from './db/mongoClient.js';
-import testRoutes from './routes/test.js';
+import userRoutes from './routes/user.js';
 
 dotenv.config();
 
@@ -16,7 +16,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
 
-app.use('/api/test', testRoutes);
+app.use('/api/user', userRoutes);
 
 mongoClient
   .connect()
