@@ -2,15 +2,18 @@ import mongoClient from "../db/mongoClient.js";
 
 export const getUsers = async (req, res) => {
   try {
-    const userId = req.params.id;
-    const query = { _id: mongoClient.ObjectID(userId) };
+    const userEmail = req.params.email;
+    const query = { email: userEmail };
 
-    const user = await usersCollection.findOne(query);
+    const user = await mongoClient
+      .db("scouts-pole")
+      .collection("users")
+      .findOne(query);
 
     if (user) {
       return res.status(200).json(user);
     } else {
-      return res.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: "User not found" });
     }
   } catch (error) {
     res
@@ -46,7 +49,7 @@ export const createUser = async (req, res) => {
 
 export const updateUser = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const UserEmail = req.params.email;
     const updatedUser = req.body;
     const usersCollection = mongoClient.db("scouts-pole").collection("users");
 
@@ -54,7 +57,7 @@ export const updateUser = async (req, res) => {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
-    const query = { _id: mongoClient.ObjectID(userId) };
+    const query = { email: UserEmail };
     const update = { $set: updatedUser };
     const result = await usersCollection.updateOne(query, update);
 
@@ -72,9 +75,9 @@ export const updateUser = async (req, res) => {
 
 export const deleteUser = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const userEmail = req.params.email;
     const usersCollection = mongoClient.db("scouts-pole").collection("users");
-    const query = { _id: mongoClient.ObjectID(userId) };
+    const query = { email: userEmail };
     const result = await usersCollection.deleteOne(query);
 
     if (result.deletedCount > 0) {
