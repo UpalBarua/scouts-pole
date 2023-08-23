@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { RadioGroup } from '@headlessui/react';
-import PoleOption from './pole-option';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
+import { useState } from 'react';
+import PoleOption from './PoleOption';
 
 const INFORMATION = {
   _id: 1,
@@ -13,7 +13,7 @@ const INFORMATION = {
 
 const { options, question, discription } = INFORMATION;
 
-const PoleCard = () => {
+const  PoleCard= () => {
   const [selected, setSelected] = useState('');
 
   // Submit button fucn ==>

@@ -1,7 +1,7 @@
-import React from 'react';
 import { RadioGroup } from '@headlessui/react';
-import CheckIcon from './ui/check-icon';
 import clsx from 'clsx';
+import React from 'react';
+import CheckIcon from './ui/check-icon';
 
 const PoleOption = ({ option }) => {
   return (
