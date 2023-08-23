@@ -1,25 +1,32 @@
-import { createBrowserRouter } from "react-router-dom";
-import RootLayout from "../layouts/root-layout";
-import HomePage from "../pages/home";
-import SignUp from "../Registration/SignUp/SignUp";
-import SignIn from "../Registration/SignIn/SignIn";
+import { createBrowserRouter } from 'react-router-dom';
+import RootLayout from '../layouts/root-layout';
+
+// pages
+import HomePage from '../pages/home';
+import AuthPage from '../pages/auth';
+import HistoryPage from '../pages/history';
+import NewPolePage from '../pages/new-pole';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <RootLayout />,
     children: [
       {
-        path: "/",
+        index: true,
         element: <HomePage />,
       },
       {
-        path: "/sign-up",
-        element: <SignUp />,
+        path: '/auth',
+        element: <AuthPage />,
       },
       {
-        path: "/sign-in",
-        element: <SignIn />,
+        path: '/history',
+        element: <HistoryPage />,
+      },
+      {
+        path: '/new-pole',
+        element: <NewPolePage />,
       },
     ],
   },
