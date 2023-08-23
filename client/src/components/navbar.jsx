@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const MENU_OPTIONS = [
   { title: 'Home', link: '/' },
-  { title: 'About', link: '/' },
+  { title: 'History', link: '/history' },
   { title: 'Vote', link: '/' },
   { title: 'Pole', link: '/' },
 ];

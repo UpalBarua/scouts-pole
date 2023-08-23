@@ -6,7 +6,7 @@ const App = () => {
   return (
     <div className="container mx-auto">
       <AuthProvider>
-        <RouterProvider router={router} />;
+        <RouterProvider router={router} />
       </AuthProvider>
     </div>
   );
