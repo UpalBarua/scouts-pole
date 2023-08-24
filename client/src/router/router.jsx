@@ -2,10 +2,10 @@ import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/root-layout';
 
 // pages
-import History from '../pages/History';
 import HomePage from '../pages/home';
 import AuthPage from '../pages/auth';
 import NewPolePage from '../pages/new-pole';
+import HistoryPage from '../pages/history';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/history',
-        element: <History />,
+        element: <HistoryPage />,
       },
     ],
   },

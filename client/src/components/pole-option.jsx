@@ -1,10 +1,10 @@
-import React from "react";
-import { RadioGroup } from "@headlessui/react";
-import CheckIcon from "./ui/check-icon";
-import clsx from "clsx";
+import React from 'react';
+import { RadioGroup } from '@headlessui/react';
+import CheckIcon from './ui/check-icon';
+import clsx from 'clsx';
 
 const PoleOption = ({ option, index }) => {
-  const isUrl = option.startsWith("http");
+  const isUrl = option.startsWith('http');
 
   return (
     <RadioGroup.Option
@@ -12,17 +12,16 @@ const PoleOption = ({ option, index }) => {
       value={option}
       className={({ active, checked }) =>
         clsx(
-          " relative flex cursor-pointer rounded-lg   shadow-md focus:outline-none",
-          isUrl ? "p-1 md:p-2" : "px-3 md:px-5 md:py-4 py-2",
+          ' relative flex cursor-pointer rounded-lg   shadow-md focus:outline-none',
+          isUrl ? 'p-1 md:p-2' : 'px-3 md:px-5 md:py-4 py-2',
           {
-            "ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300":
+            'ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300':
               active,
-            "bg-sky-900  bg-opacity-75 text-white": checked,
-            "bg-white": !checked,
+            'bg-sky-900  bg-opacity-75 text-white': checked,
+            'bg-white': !checked,
           }
         )
-      }
-    >
+      }>
       {({ checked }) => (
         <>
           <div className="flex justify-between items-center w-full">
@@ -32,16 +31,15 @@ const PoleOption = ({ option, index }) => {
                   <img
                     src={option}
                     alt="image"
-                    className="w-16 md:w-20 h-10 md:h-14   object-cover rounded-sm"
+                    className="object-cover w-16 h-10 rounded-sm md:w-20 md:h-14"
                   />
                 ) : (
                   <RadioGroup.Label
                     as="p"
                     className={clsx(
-                      "font-medium",
-                      checked ? "text-white" : "text-gray-900"
-                    )}
-                  >
+                      'font-medium',
+                      checked ? 'text-white' : 'text-gray-900'
+                    )}>
                     {option}
                   </RadioGroup.Label>
                 )}
