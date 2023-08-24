@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/root-layout';
 
 // pages
+import History from '../pages/History';
 import HomePage from '../pages/home';
 import AuthPage from '../pages/auth';
 import HistoryPage from '../pages/history';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/new-pole',
         element: <NewPolePage />,
+      },
+      {
+        path: '/history',
+        element: <History />,
       },
     ],
   },
