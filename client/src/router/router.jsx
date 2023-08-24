@@ -5,7 +5,6 @@ import RootLayout from '../layouts/root-layout';
 import History from '../pages/History';
 import HomePage from '../pages/home';
 import AuthPage from '../pages/auth';
-import HistoryPage from '../pages/history';
 import NewPolePage from '../pages/new-pole';
 
 const router = createBrowserRouter([
