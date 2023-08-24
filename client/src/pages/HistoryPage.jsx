@@ -1,62 +1,52 @@
-const History = () => {
+const HistoryPage = () => {
   const histories = [
     {
-      title: " What do you value most personally?",
+      title: ' What do you value most personally?',
       description:
-        "Work-Life balance Career Progression Relationships colleagues Earning tons of money",
+        'Work-Life balance Career Progression Relationships colleagues Earning tons of money',
     },
     {
-      title: "What projects are you most proud of? ",
+      title: 'What projects are you most proud of? ',
       description:
-        "Reduce the duration Create an agenda for discussion Hold them more  less frequently Someone new hosts each session",
+        'Reduce the duration Create an agenda for discussion Hold them more  less frequently Someone new hosts each session',
     },
     {
-      title: " How can we improve the value of these meetings?",
+      title: ' How can we improve the value of these meetings?',
       description:
-        "Work-Life balance Career Progression Relationships colleagues Earning tons of money",
+        'Work-Life balance Career Progression Relationships colleagues Earning tons of money',
     },
     {
-      title: " What do we do well?",
+      title: ' What do we do well?',
       description:
-        "Work-Life balance Career Progression Relationships colleagues Earning tons of money",
+        'Work-Life balance Career Progression Relationships colleagues Earning tons of money',
     },
   ];
 
   return (
     <div>
-      <h3 className="font-bold py-2 text-purple-500 text-center">
+      <h3 className="font-medium text-center text-purple-500">
         Our Scouts Pole History
       </h3>
       <div className="flex justify-center py-5">
-        <div className="flex justify-around text-center md:w-6/12 w-11/12 ">
+        <div className="flex justify-around w-11/12 text-center  md:w-6/12">
           <input
-            className="py-2 text-sm px-2 w-full hover:outline-0 rounded-full mx-3 border border-gray-200"
+            className="px-2 py-1 w-full hover:outline-0 rounded-full mx-3 border border-gray-100"
             type="text"
             placeholder="Search your poll history"
           />
-          <button
-            type="submit"
-            className="px-6 py-1 bg-purple-600 text-white rounded-full"
-          >
+          <button type="submit" className="px-6 py-1 text-white bg-purple-600 rounded-full">
             Submit
           </button>
         </div>
       </div>
-
       <div className="flex justify-center items-center">
         <div>
-          <select className="border border-gray-300 p-1">
-            <option>Sorting</option>
-            <option>Recent</option>
-            <option>Oldest</option>
-          </select>
           {histories?.map((history, index) => (
             <ul
               key={index}
-              className="flex justify-between items-center border border-gray-200 p-4 my-2 shadow-sm rounded-md"
-            >
+              className="flex justify-between items-center p-4 my-2 rounded-md border border-gray-200 shadow-sm">
               <li>
-                <h3 className="font-bold py-2">{history?.title}</h3>
+                <h3 className="py-2 font-bold">{history?.title}</h3>
                 <p className="max-w-lg">{history.description}</p>
               </li>
               <button className="p-2 rounded-full hover:bg-red-500 hover:text-white">
@@ -66,8 +56,7 @@ const History = () => {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-8 h-8"
-                >
+                  className="w-8 h-8">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -83,4 +72,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default HistoryPage;

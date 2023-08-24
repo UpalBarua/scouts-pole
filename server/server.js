@@ -5,6 +5,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import mongoClient from './db/mongoClient.js';
 import userRoutes from './routes/user.js';
+import poleRoutes from './routes/poles.js'
+import poleHistoryRoutes from './routes/poleHistoryRoutes.js';
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api/user', userRoutes);
+app.use('/api/pole', poleRoutes); 
+app.use('/api/pole', poleHistoryRoutes);
 
 mongoClient
   .connect()
