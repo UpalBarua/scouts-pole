@@ -1,26 +1,44 @@
 import { Fragment, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { get, useForm } from 'react-hook-form';
 import axios from '../api/axios';
+import OptionField from '../components/new-pole-form/option-filed';
+import uploadImage from '../utilities/uploadImage';
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
+  const [optionImages, setOptionImages] = useState([]);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    reset,
   } = useForm();
 
-  const onSubmit = async ({ title, description, ...options }) => {
+  const onSubmit = async ({ title, description, options }) => {
     try {
+      const optionImageUrls = await Promise.all(
+        optionImages?.map(async (image) => await uploadImage(image))
+      );
+
+      const optionsArray = optionImageUrls.map((_, index) => {
+        return {
+          option: options[index],
+          optionImage: optionImageUrls[index],
+        };
+      });
+
       const newPole = {
         title,
         description,
-        options: [...Object.values(options)],
+        options: optionsArray,
         votes: [],
       };
 
       await axios.post('/pole', newPole);
+
+      setOptionImages([]);
+      reset();
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +86,7 @@ const NewPole = () => {
             Description
           </label>
           <textarea
-            className="px-4 py-2 w-full h-32 rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
+            className="px-4 py-2 w-full h-32 rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out resize-none focus:ring focus:ring-blue-300 focus:outline-none"
             type="text"
             {...register('description', {
               required: 'Description is required',
@@ -92,21 +110,36 @@ const NewPole = () => {
               <label className="block mb-2 font-bold text-black">
                 Option {index + 1}
               </label>
-              <input
-                className="px-4 py-2 w-full rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
-                type="text"
-                {...register(`option${index}`, {
-                  required: 'Option is required',
-                  minLength: {
-                    value: 5,
-                    message: 'Option must be at least 5 characters',
-                  },
-                  maxLength: {
-                    value: 20,
-                    message: 'Title cannot exceed 20 characters in length',
-                  },
-                })}
-              />
+              <div>
+                <input
+                  className="px-4 py-2 w-full rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
+                  type="text"
+                  {...register(`options.${index}`, {
+                    required: 'Option is required',
+                    minLength: {
+                      value: 3,
+                      message: 'Option must be at least 3 characters',
+                    },
+                    maxLength: {
+                      value: 50,
+                      message: 'Title cannot exceed 50 characters in length',
+                    },
+                  })}
+                />
+                <input
+                  type="file"
+                  onChange={(e) =>
+                    setOptionImages((prevOptionImages) => [
+                      ...prevOptionImages,
+                      e.target.files[0],
+                    ])
+                  }
+                />
+                {optionImages[index] && (
+                  <img src={URL.createObjectURL(optionImages[index])} alt="" />
+                )}
+              </div>
+
               {errors[`option${index}`]?.message && (
                 <p className="text-sm text-red-400">
                   {errors[`option${index}`].message}
@@ -116,6 +149,7 @@ const NewPole = () => {
             </Fragment>
           ))}
         </fieldset>
+
         <button
           onClick={addNewOptionInputField}
           type="button"
