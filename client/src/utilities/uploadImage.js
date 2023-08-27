@@ -1,0 +1,25 @@
+import axios from 'axios';
+
+const uploadImage = async (image) => {
+  let formData = new FormData();
+  formData.append('image', image);
+
+  try {
+    const { data } = await axios.post(
+      `https://api.imgbb.com/1/upload?key=${
+        import.meta.env.VITE_IMGBB_API_KEY
+      }`,
+      formData
+    );
+
+    if (data.success) {
+      return data.data.url;
+    }
+
+    console.error('Image upload failed:', response.data.error.message);
+  } catch (error) {
+    console.error('Error uploading image:', error);
+  }
+};
+
+export default uploadImage;

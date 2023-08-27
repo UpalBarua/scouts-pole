@@ -42,10 +42,10 @@ const contributors = [
 
 const Footer = () => {
   return (
-    <footer className="container flex justify-between py-5">
+    <footer className="container flex justify-between py-5 mt-6">
       {/* footer left content */}
       <div className="">
-        <p className="text-3xl font-bold">
+        <p className="text-2xl font-bold">
           Scouts
           <span className="pl-1 text-purple-600">Pole</span>
         </p>
@@ -73,7 +73,7 @@ const Footer = () => {
         </p>
         <div className="flex">
           {contributors.map((person, index) => (
-            <Link key={index} to={person.portfolio}>
+            <Link key={index} to={person.portfolio} className='px-1'>
               <img
                 className="object-cover overflow-hidden w-8 h-8 rounded-full"
                 src={person.image}
