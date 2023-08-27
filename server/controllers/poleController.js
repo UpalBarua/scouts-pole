@@ -50,6 +50,7 @@ export const createPole = async (req, res) => {
         return {
           ...option,
           _id: new ObjectId(),
+          votes: [],
         };
       }),
     };

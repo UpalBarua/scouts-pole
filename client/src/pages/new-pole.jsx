@@ -29,7 +29,6 @@ const NewPole = () => {
         return {
           option: options[index],
           optionImage: optionImageUrls[index],
-          votes: [],
         };
       });
 

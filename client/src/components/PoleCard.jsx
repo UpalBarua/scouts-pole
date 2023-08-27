@@ -8,7 +8,10 @@ const PoleCard = ({ _id, options, title, description }) => {
   const [selectedOption, setSelectedOption] = useState('');
 
   const handleSubmit = async () => {
-    await axios.patch(`/poles/${_id}`);
+    const { data } = await axios.patch(`/pole/${_id}`, {
+      userId: 'upal@mail.com',
+      optionId: selectedOption._id,
+    });
 
     if (!selectedOption) {
       return console.log('No option selected');
@@ -17,6 +20,8 @@ const PoleCard = ({ _id, options, title, description }) => {
       setSelectedOption(null);
     }
   };
+
+  console.log(options);
 
   return (
     <div className="my-4 md:my-20 mx-auto w-[90%]">
