@@ -44,7 +44,17 @@ export const createPole = async (req, res) => {
       return res.status(400).json({ message: 'Invalid body' });
     }
 
-    const createdPole = await polesCollection.insertOne(body);
+    const newPole = {
+      ...body,
+      options: body.options.map((option) => {
+        return {
+          ...option,
+          _id: new ObjectId(),
+        };
+      }),
+    };
+
+    const createdPole = await polesCollection.insertOne(newPole);
 
     if (createPole) {
       return res
