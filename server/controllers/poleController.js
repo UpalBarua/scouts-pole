@@ -44,7 +44,18 @@ export const createPole = async (req, res) => {
       return res.status(400).json({ message: 'Invalid body' });
     }
 
-    const createdPole = await polesCollection.insertOne(body);
+    const newPole = {
+      ...body,
+      options: body.options.map((option) => {
+        return {
+          ...option,
+          _id: new ObjectId(),
+          votes: [],
+        };
+      }),
+    };
+
+    const createdPole = await polesCollection.insertOne(newPole);
 
     if (createPole) {
       return res
@@ -100,5 +111,45 @@ export const deletePole = async (req, res) => {
     res
       .status(500)
       .json({ message: 'Error deleting pole', error: error.message });
+  }
+};
+
+export const updatePoleVotes = async (req, res) => {
+  try {
+    const { poleId } = req.params;
+    const { userId, optionId } = req.body;
+
+    const pole = await polesCollection.findOne({ _id: new ObjectId(poleId) });
+
+    const filteredOptions = pole.options.map((option) => {
+      return {
+        ...option,
+        votes: option.votes.filter((vote) => vote !== userId),
+      };
+    });
+
+    const updatedOptions = filteredOptions.map((option) => {
+      if (option._id.toString() === optionId) {
+        console.log(option);
+        option.votes.push(userId);
+      }
+
+      return option;
+    });
+
+    // ! could be removed
+    const updatedPole = {
+      ...pole,
+      options: updatedOptions,
+    };
+
+    const result = await polesCollection.updateOne(
+      { _id: new ObjectId(poleId) },
+      { $set: updatedPole }
+    );
+
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json(error);
   }
 };

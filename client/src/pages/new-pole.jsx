@@ -3,10 +3,12 @@ import { get, useForm } from 'react-hook-form';
 import axios from '../api/axios';
 import OptionField from '../components/new-pole-form/option-filed';
 import uploadImage from '../utilities/uploadImage';
+import { BiLoaderAlt } from 'react-icons/bi';
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
   const [optionImages, setOptionImages] = useState([]);
+  const [isPoleSubmitting, setIsPoleSubmitting] = useState(false);
 
   const {
     register,
@@ -17,6 +19,8 @@ const NewPole = () => {
 
   const onSubmit = async ({ title, description, options }) => {
     try {
+      setIsPoleSubmitting(true);
+
       const optionImageUrls = await Promise.all(
         optionImages?.map(async (image) => await uploadImage(image))
       );
@@ -32,7 +36,6 @@ const NewPole = () => {
         title,
         description,
         options: optionsArray,
-        votes: [],
       };
 
       await axios.post('/pole', newPole);
@@ -41,6 +44,8 @@ const NewPole = () => {
       reset();
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsPoleSubmitting(false);
     }
   };
 
@@ -157,10 +162,11 @@ const NewPole = () => {
           Add Input
         </button>
         <button
-          disabled={isSubmitting}
+          disabled={isPoleSubmitting}
           type="submit"
-          className="px-6 py-3 mt-4 font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg shadow-md transition duration-300 ease-in-out transform disabled:bg-gray-500 hover:from-purple-700 hover:to-pink-700 hover:scale-105">
-          submit
+          className="flex gap-2 items-center px-6 py-3 mt-4 font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg shadow-md transition duration-300 ease-in-out transform disabled:bg-gray-500 hover:from-purple-700 hover:to-pink-700 hover:scale-105">
+          {isPoleSubmitting && <BiLoaderAlt className="animate-spin" />}
+          <span>submit</span>
         </button>
       </form>
     </div>
