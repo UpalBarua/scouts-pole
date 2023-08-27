@@ -4,7 +4,8 @@ import React from 'react';
 import CheckIcon from './ui/check-icon';
 
 const PoleOption = ({ option, index }) => {
-  const isUrl = option.startsWith('http');
+  console.log(option);
+  const isUrl = option.toString().startsWith('http');
 
   return (
     <RadioGroup.Option
