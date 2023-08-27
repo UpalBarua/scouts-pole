@@ -2,39 +2,35 @@ import { RadioGroup } from '@headlessui/react';
 import { clsx } from 'clsx';
 import { useState } from 'react';
 import PoleOption from './PoleOption';
+import axios from '../api/axios';
 
-const PoleCard = ({ options, title, description }) => {
-  const [selected, setSelected] = useState('');
+const PoleCard = ({ _id, options, title, description }) => {
+  const [selectedOption, setSelectedOption] = useState('');
 
-  const handleSubmit = () => {
-    if (!selected) {
+  const handleSubmit = async () => {
+    await axios.patch(`/poles/${_id}`);
+
+    if (!selectedOption) {
       return console.log('No option selected');
     } else {
-      console.log('Selected value:', selected);
-      setSelected(null);
+      console.log('Selected value:', selectedOption);
+      setSelectedOption(null);
     }
   };
 
   return (
     <div className="my-4 md:my-20 mx-auto w-[90%]">
-      <h2 className="mx-auto mb-4 text-sm font-semibold text-black md:mb-6 text-start md:text-center md:text-lg">
-        {title}
-      </h2>
-      <div className="mx-auto w-full max-w-2xl rounded-md bg-[#1f1f38] p-[5%] md:p-[4%] ">
-        <h2 className="mb-3 font-semibold text-center text-white md:mb-4 text-md md:text-2xl">
-          {description}
+      <div className="mx-auto w-full max-w-2xl rounded-md bg-[#1f1f38] p-[5%] md:p-[4%] text-white">
+        <h2 className="mx-auto mb-4 text-2xl font-bold md:mb-6 text-start md:text-center">
+          {title}
         </h2>
+        <h2 className="mb-3 text-center text-white md:mb-6">{description}</h2>
 
-        <RadioGroup value={selected} onChange={setSelected}>
+        <RadioGroup value={selectedOption} onChange={setSelectedOption}>
           <div className="space-y-2">
-            {options?.map(
-              (
-                option,
-                index //? for testing the image options pass image options as argument and if you want to pass text options you can pass the text options i already  added 2 kinds of data on the INFORMATION array..
-              ) => (
-                <PoleOption option={option} index={index} key={index} />
-              )
-            )}
+            {options?.map((option) => (
+              <PoleOption option={option} key={option._id} />
+            ))}
           </div>
         </RadioGroup>
 
@@ -45,18 +41,18 @@ const PoleCard = ({ options, title, description }) => {
             type="submit"
             className={clsx(
               'rounded mt-3 md:mt-5 px-3 md:px-5 py-1.5 md:py-2.5 text-sm overflow-hidden group bg-green-500 relative hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300',
-              !selected && 'cursor-not-allowed' //? add cursor class conditionally
+              !selectedOption && 'cursor-not-allowed' //? add cursor class conditionally
             )}>
             <span className="absolute right-0 -mt-12 w-8 h-32 bg-white opacity-10 transition-all duration-1000 transform rotate-12 translate-x-12 group-hover:-translate-x-40 ease"></span>
 
             <span className="relative">SUBMIT</span>
           </button>
           <button
-            disabled={!selected}
+            disabled={!selectedOption}
             type="reset"
             className={clsx(
               'rounded mt-3 md:mt-5 px-2.5 md:px-4 py-1 md:py-2 text-sm  overflow-hidden group bg-red-500 relative hover:bg-gradient-to-r hover:from-red-500 hover:to-red-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-red-400 transition-all ease-out duration-300',
-              !selected && 'cursor-not-allowed'
+              !selectedOption && 'cursor-not-allowed'
             )}>
             <span className="absolute right-0 -mt-12 w-8 h-32 bg-white opacity-10 transition-all duration-1000 transform rotate-12 translate-x-12 group-hover:-translate-x-40 ease"></span>
 

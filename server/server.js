@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use('/api/user', userRoutes);
 app.use('/api/pole', poleRoutes);
-app.use('/api/pole', poleHistoryRoutes);
+// app.use('/api/pole', poleHistoryRoutes);
 
 mongoClient
   .connect()

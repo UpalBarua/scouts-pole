@@ -29,6 +29,7 @@ const NewPole = () => {
         return {
           option: options[index],
           optionImage: optionImageUrls[index],
+          votes: [],
         };
       });
 
@@ -36,7 +37,6 @@ const NewPole = () => {
         title,
         description,
         options: optionsArray,
-        votes: [],
       };
 
       await axios.post('/pole', newPole);

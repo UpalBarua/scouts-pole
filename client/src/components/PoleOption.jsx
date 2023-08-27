@@ -3,10 +3,9 @@ import clsx from 'clsx';
 import React from 'react';
 import CheckIcon from './ui/check-icon';
 
-const PoleOption = ({ option, index }) => {
+const PoleOption = ({ option }) => {
   return (
     <RadioGroup.Option
-      key={option}
       value={option}
       className={({ active, checked }) =>
         clsx(
