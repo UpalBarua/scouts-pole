@@ -21,15 +21,15 @@ const PoleCard = ({ _id, options, title, description }) => {
     }
   };
 
-  console.log(options);
-
   return (
     <div className="my-4 md:my-20 mx-auto w-[90%]">
-      <div className="mx-auto w-full max-w-2xl rounded-md bg-[#1f1f38] p-[5%] md:p-[4%] text-white">
-        <h2 className="mx-auto mb-4 text-2xl font-bold md:mb-6 text-start md:text-center">
+      <div className="mx-auto w-full max-w-2xl rounded-md bg-dark-900 p-[5%] md:p-[4%] text-white">
+        <h2 className="mx-auto mb-4 text-2xl font-bold md:mb-6 text-start md:text-center font-secondary">
           {title}
         </h2>
-        <h2 className="mb-3 text-center text-white md:mb-6">{description}</h2>
+        <h2 className="mb-3 text-center text-white md:mb-6 font-secondary">
+          {description}
+        </h2>
 
         <RadioGroup value={selectedOption} onChange={setSelectedOption}>
           <div className="space-y-2">
