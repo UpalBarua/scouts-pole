@@ -18,7 +18,7 @@ export const getPoles = async (req, res) => {
 // Get a pole by its ID
 export const getPoleById = async (req, res) => {
   try {
-    const poleId = req.params.poleId;
+    const {poleId} = req.params;
     const query = { _id: new ObjectId(poleId) };
 
     const pole = await polesCollection.findOne(query);
@@ -74,7 +74,7 @@ export const createPole = async (req, res) => {
 // Update a pole by its ID
 export const updatePole = async (req, res) => {
   try {
-    const poleId = req.params.poleId;
+    const {poleId} = req.params;
     const updatedPole = req.body;
 
     const query = { _id: new ObjectId(poleId) };
@@ -97,7 +97,7 @@ export const updatePole = async (req, res) => {
 // Delete a pole by its ID
 export const deletePole = async (req, res) => {
   try {
-    const poleId = req.params.poleId;
+    const {poleId} = req.params;
     const query = { _id: new ObjectId(poleId) };
 
     const result = await polesCollection.deleteOne(query);
