@@ -25,7 +25,7 @@ const NewPole = () => {
         optionImages?.map(async (image) => await uploadImage(image))
       );
 
-      const optionsArray = optionImageUrls.map((_, index) => {
+      const optionsArray = optionInputFields.map((_, index) => {
         return {
           option: options[index],
           optionImage: optionImageUrls[index],

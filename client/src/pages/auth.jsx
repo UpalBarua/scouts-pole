@@ -35,7 +35,7 @@ const AuthPage = () => {
 
   return (
     <section className="flex justify-center items-center h-[80dvh]">
-      <div className="flex flex-col gap-6 items-center sm:gap-8 sm:flex-row md:gap-12">
+      <div className="flex flex-col gap-6 items-center sm:gap-8 sm:flex-row md:gap-14">
         <img className="w-48 sm:flex-1" src={authIllustration} />
         <div className="flex flex-col gap-2 items-center text-center md:gap-3 sm:flex-1 sm:items-start sm:text-start">
           <h2 className="text-2xl font-bold text-white md:text-3xl">

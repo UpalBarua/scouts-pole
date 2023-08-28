@@ -5,12 +5,10 @@ import { Toaster, resolveValue } from 'react-hot-toast';
 
 const App = () => {
   return (
-    <div className="container mx-auto">
-      <AuthProvider>
-        <RouterProvider router={router} />
-        <Toaster position="top-right" />
-      </AuthProvider>
-    </div>
+    <AuthProvider>
+      <RouterProvider router={router} />
+      <Toaster position="top-right" />
+    </AuthProvider>
   );
 };
 

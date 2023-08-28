@@ -22,7 +22,7 @@ const MENU_OPTIONS = [
 
 const Navbar = () => {
   return (
-    <header className="flex justify-between items-center py-2 md:py-3">
+    <header className="container flex sticky top-0 z-20 justify-between items-center py-2 md:py-3 bg-primary-800">
       <Link to="/">
         <h1 className="text-2xl font-bold text-white">
           Scouts<span className="text-accent-500">pole</span>
