@@ -7,6 +7,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { CgSpinner } from 'react-icons/cg';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import createUser from '../utilities/createUser';
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -17,11 +18,7 @@ const AuthPage = () => {
       setIsLoading(true);
 
       const { user } = await signInWithPopup(auth, googleAuth);
-      await axios.post(`/user/${user?.email}`, {
-        name: user?.displayName,
-        email: user?.email,
-        role: 'user',
-      });
+      await createUser(user?.displayName, user?.email);
 
       toast.success('Logged in successfully');
       navigate('/');
