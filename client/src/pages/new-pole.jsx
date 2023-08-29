@@ -1,11 +1,16 @@
+import clsx from 'clsx';
 import { Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { BiImageAdd, BiLoaderAlt } from 'react-icons/bi';
+import { IoMdClose } from 'react-icons/io';
 import axios from '../api/axios';
+import Button from '../components/ui/button';
 import uploadImage from '../utilities/uploadImage.js';
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
   const [optionImages, setOptionImages] = useState([]);
+  const [isPoleSubmitting, setIsPoleSubmitting] = useState(false);
 
   const {
     register,
@@ -16,11 +21,13 @@ const NewPole = () => {
 
   const onSubmit = async ({ title, description, options }) => {
     try {
+      setIsPoleSubmitting(true);
+
       const optionImageUrls = await Promise.all(
         optionImages?.map(async (image) => await uploadImage(image))
       );
 
-      const optionsArray = optionImageUrls.map((_, index) => {
+      const optionsArray = optionInputFields.map((_, index) => {
         return {
           option: options[index],
           optionImage: optionImageUrls[index],
@@ -31,7 +38,6 @@ const NewPole = () => {
         title,
         description,
         options: optionsArray,
-        votes: [],
       };
 
       await axios.post('/pole', newPole);
@@ -40,6 +46,8 @@ const NewPole = () => {
       reset();
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsPoleSubmitting(false);
     }
   };
 
@@ -54,15 +62,22 @@ const NewPole = () => {
     setOptionInputFields((prevOptionInputFields) =>
       prevOptionInputFields.filter((_, index) => index !== removeIndex)
     );
+
+    setOptionImages((prevOptionImages) =>
+      prevOptionImages.filter((_, index) => index !== removeIndex)
+    );
   };
 
   return (
-    <div className=" w-full lg:w-[550px] mx-auto">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
-          <label className="block mb-2 font-bold text-gray-700">Title</label>
+    <section className="container">
+      <form
+        className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900 sm:my-5"
+        onSubmit={handleSubmit(onSubmit)}>
+        <h2 className="text-2xl font-bold text-white">Add a new pole</h2>
+        <fieldset className="space-y-2">
+          <label className="font-medium">Title</label>
           <input
-            className="px-4 py-2 w-full rounded-md border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
+            className="px-4 py-2.5 w-full rounded-lg border border-primary-600 transition-colors shadow-sm bg-primary-700 outline-none focus-visible:border-accent-500"
             type="text"
             {...register('title', {
               required: 'Title is required',
@@ -77,15 +92,13 @@ const NewPole = () => {
             })}
           />
           {errors.title?.message && (
-            <p className="text-sm text-red-400">{errors.title.message}</p>
+            <p className="text-sm text-red-500">{errors.title.message}</p>
           )}
         </fieldset>
-        <fieldset>
-          <label className="block mb-2 font-bold text-gray-700">
-            Description
-          </label>
+        <fieldset className="space-y-2">
+          <label className="font-medium">Description</label>
           <textarea
-            className="px-4 py-2 w-full h-32 rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out resize-none focus:ring focus:ring-blue-300 focus:outline-none"
+            className="px-4 py-2.5 w-full rounded-lg border border-primary-600 transition-colors shadow-sm bg-primary-700 resize-none h-36 outline-none focus-visible:border-accent-500 "
             type="text"
             {...register('description', {
               required: 'Description is required',
@@ -100,18 +113,17 @@ const NewPole = () => {
             })}
           />
           {errors.description?.message && (
-            <p className="text-sm text-red-400">{errors.description.message}</p>
+            <p className="text-sm text-red-500">{errors.description.message}</p>
           )}
         </fieldset>
-        <fieldset>
+        <div className="space-y-5">
           {optionInputFields.map((_, index) => (
             <Fragment key={index}>
-              <label className="block mb-2 font-bold text-black">
-                Option {index + 1}
-              </label>
-              <div>
+            <fieldset className="space-y-3">
+              <label className="font-medium">Option {index + 1}</label>
+              <div className="flex gap-2 items-center">
                 <input
-                  className="px-4 py-2 w-full rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
+                  className="px-4 py-2.5 w-full rounded-lg border border-primary-600 transition-colors shadow-sm bg-primary-700 outline-none focus-visible:border-accent-500"
                   type="text"
                   {...register(`options.${index}`, {
                     required: 'Option is required',
@@ -126,30 +138,49 @@ const NewPole = () => {
                   })}
                 />
                 <input
+                  id={`file-input-${index}`}
+                  className="hidden mt-4"
                   type="file"
-                  className='mt-4'
                   onChange={(e) =>
-                    setOptionImages((prevOptionImages) => [
-                      ...prevOptionImages,
-                      e.target.files[0],
-                    ])
+                    setOptionImages((prevOptionImages) => {
+                      const updatedOptionsImages = [...prevOptionImages];
+                      updatedOptionsImages[index] = e.target.files[0];
+                      return updatedOptionsImages;
+                    })
                   }
                 />
-                {optionImages[index] && (
-                  <img src={URL.createObjectURL(optionImages[index])} alt="" />
-                )}
+                <label
+                  className={clsx(
+                    'p-2 text-2xl text-white rounded-lg border border-primary-500',
+                    !optionImages[index] && 'bg-primary-600',
+                    optionImages[index] && 'bg-accent-500'
+                  )}
+                  htmlFor={`file-input-${index}`}>
+                  <BiImageAdd />
+                </label>
+                <button
+                  className="p-2 text-2xl text-white bg-red-500 rounded-lg"
+                  onClick={() => removeInputField(index)}>
+                  <IoMdClose />
+                </button>
               </div>
-
-              {errors[`option${index}`]?.message && (
-                <p className="text-sm text-red-400">
-                  {errors[`option${index}`].message}
+              {optionImages?.[index] && (
+                <img
+                  className="object-cover object-center w-full rounded-md"
+                  src={URL.createObjectURL(optionImages[index])}
+                  alt=""
+                />
+              )}
+              {errors?.options?.[index]?.message && (
+                <p className="text-sm text-red-500">
+                  {errors.options[index].message}
                 </p>
               )}
               <button className='mt-2' onClick={() => removeInputField(index)}>Remove</button>
+              </fieldset>
             </Fragment>
           ))}
-        </fieldset>
-
+          </div>
         <button
           onClick={addNewOptionInputField}
           type="button"
@@ -162,8 +193,17 @@ const NewPole = () => {
           className="px-6 py-1 mt-4 ml-3 font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg shadow-md transition duration-300 ease-in-out transform disabled:bg-gray-500 hover:from-purple-700 hover:to-pink-700 hover:scale-105">
           Submit
         </button>
+        <div className="flex gap-2 justify-end items-center pt-4">
+          <Button onClick={addNewOptionInputField} variant="secondary">
+            Add Input
+          </Button>
+          <Button disabled={isPoleSubmitting} type="submit" variant="primary">
+            {isPoleSubmitting && <BiLoaderAlt className="animate-spin" />}
+            <span>Submit Pole</span>
+          </Button>
+        </div>
       </form>
-    </div>
+    </section>
   );
 };
 

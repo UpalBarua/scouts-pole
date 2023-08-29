@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/root-layout';
 
 // pages
-import HistoryPage from '../pages/HistoryPage';
+import ErrorPage from '../components/ErrorPage/ErrorPage';
 import AuthPage from '../pages/auth';
 import HomePage from '../pages/home';
 import NewPolePage from '../pages/new-pole';
@@ -11,6 +11,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         index: true,
@@ -24,10 +25,7 @@ const router = createBrowserRouter([
         path: '/new-pole',
         element: <NewPolePage />,
       },
-      {
-        path: '/history',
-        element: <HistoryPage />,
-      },
+     
     ],
   },
 ]);
