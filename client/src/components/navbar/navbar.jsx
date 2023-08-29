@@ -1,6 +1,9 @@
 import { Link, NavLink } from 'react-router-dom';
 import { MdOutlineCreate, MdHistory, MdOutlineHome } from 'react-icons/md';
 import MobileMenu from './mobile-menu';
+import Button from '../ui/button';
+import { BiLogOut } from 'react-icons/bi';
+import LogoutButton from '../logout-button';
 
 const MENU_OPTIONS = [
   {
@@ -29,17 +32,20 @@ const Navbar = () => {
         </h1>
       </Link>
       <nav>
-        <ul className="hidden gap-1 pt-2 md:gap-2 sm:flex">
+        <ul className="hidden gap-1 items-center pt-2 md:gap-2 sm:flex">
           {MENU_OPTIONS.map(({ title, link, Icon }) => (
             <li key={link}>
               <NavLink
-                className="flex gap-1 items-center px-4 py-2 rounded-md transition-colors text md:text-lg hover:bg-primary-700"
+                className="flex gap-1 items-center px-4 py-2 rounded-lg transition-colors text md:text-lg hover:bg-primary-700"
                 to={link}>
                 {Icon}
                 {title}
               </NavLink>
             </li>
           ))}
+          <li>
+            <LogoutButton />
+          </li>
         </ul>
         <MobileMenu menuOptions={MENU_OPTIONS} />
       </nav>

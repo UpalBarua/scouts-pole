@@ -3,6 +3,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { Fragment } from 'react';
 import { BiMenu } from 'react-icons/bi';
+import LogoutButton from '../logout-button';
 
 const MobileMenu = ({ menuOptions }) => {
   return (
@@ -28,6 +29,9 @@ const MobileMenu = ({ menuOptions }) => {
               {title}
             </Menu.Item>
           ))}
+          <Menu.Item>
+            <LogoutButton />
+          </Menu.Item>
         </Menu.Items>
       </Transition>
     </Menu>
