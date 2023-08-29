@@ -21,6 +21,7 @@ export const getUsers = async (req, res) => {
 export const createUser = async (req, res) => {
   try {
     const { email, name } = req.body;
+    console.log(req);
 
     if (!email || !name) {
       return res.status(400).json({ message: 'Missing required fields' });

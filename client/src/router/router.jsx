@@ -28,10 +28,6 @@ const router = createBrowserRouter([
         path: '/new-pole',
         element: <NewPolePage />,
       },
-      {
-        path: '/history',
-        element: <HistoryPage />,
-      },
     ],
   },
 ]);
