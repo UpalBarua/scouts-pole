@@ -1,7 +1,7 @@
-import { ObjectId } from "mongodb";
-import mongoClient from "../db/mongoClient.js";
+import { ObjectId } from 'mongodb';
+import mongoClient from '../db/mongoClient.js';
 
-const polesCollection = mongoClient.db("scouts-pole").collection("poles");
+const polesCollection = mongoClient.db('scouts-pole').collection('poles');
 
 // Get all poles
 export const getPoles = async (req, res) => {
@@ -9,7 +9,9 @@ export const getPoles = async (req, res) => {
     const poles = await polesCollection.find({}).toArray();
     res.status(200).json(poles);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching poles", error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching poles', error: error.message });
   }
 };
 
@@ -24,22 +26,37 @@ export const getPoleById = async (req, res) => {
     if (pole) {
       return res.status(200).json(pole);
     } else {
-      return res.status(404).json({ message: "Pole not found" });
+      return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error fetching pole", error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error fetching pole', error: error.message });
   }
 };
 
 // Create a new pole
 export const createPole = async (req, res) => {
   try {
-    const pole = req.body;
-    console.log(pole)
-    const result = await polesCollection.insertOne(pole);
-    res.status(201).json({ message: "Pole created successfully", result });
+    const { body } = req;
+
+    if (!body) {
+      return res.status(400).json({ message: 'Invalid body' });
+    }
+
+    const createdPole = await polesCollection.insertOne(body);
+
+    if (createPole) {
+      return res
+        .status(201)
+        .json({ message: 'Pole created successfully', createdPole });
+    }
+
+    res.status(400).json({ message: 'Failed to create pole' });
   } catch (error) {
-    res.status(500).json({ message: "Error creating pole", error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error creating pole', error: error.message });
   }
 };
 
@@ -55,12 +72,14 @@ export const updatePole = async (req, res) => {
     const result = await polesCollection.updateOne(query, update);
 
     if (result.modifiedCount > 0) {
-      return res.status(200).json({ message: "Pole updated successfully" });
+      return res.status(200).json({ message: 'Pole updated successfully' });
     } else {
-      return res.status(404).json({ message: "Pole not found" });
+      return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error updating pole", error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error updating pole', error: error.message });
   }
 };
 
@@ -73,11 +92,13 @@ export const deletePole = async (req, res) => {
     const result = await polesCollection.deleteOne(query);
 
     if (result.deletedCount > 0) {
-      return res.status(200).json({ message: "Pole deleted successfully" });
+      return res.status(200).json({ message: 'Pole deleted successfully' });
     } else {
-      return res.status(404).json({ message: "Pole not found" });
+      return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    res.status(500).json({ message: "Error deleting pole", error: error.message });
+    res
+      .status(500)
+      .json({ message: 'Error deleting pole', error: error.message });
   }
 };

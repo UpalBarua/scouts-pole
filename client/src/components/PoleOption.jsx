@@ -4,8 +4,6 @@ import React from 'react';
 import CheckIcon from './ui/check-icon';
 
 const PoleOption = ({ option, index }) => {
-  const isUrl = option.startsWith('http');
-
   return (
     <RadioGroup.Option
       key={option}
@@ -13,7 +11,7 @@ const PoleOption = ({ option, index }) => {
       className={({ active, checked }) =>
         clsx(
           ' relative flex cursor-pointer rounded-lg   shadow-md focus:outline-none',
-          isUrl ? 'p-1 md:p-2' : 'px-3 md:px-5 md:py-4 py-2',
+          // isUrl ? 'p-1 md:p-2' : 'px-3 md:px-5 md:py-4 py-2',
           {
             'ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300':
               active,
@@ -27,23 +25,19 @@ const PoleOption = ({ option, index }) => {
           <div className="flex justify-between items-center w-full">
             <div className="flex items-center">
               <div className="text-sm">
-                {isUrl ? (
-                  <img
-                    src={option}
-                    alt="image"
-                    className="object-cover w-16 h-10 rounded-sm md:w-20 md:h-14"
-                  />
-                ) : (
-                  <RadioGroup.Label
-                    as="p"
-                    className={clsx(
-                      'font-medium',
-                      checked ? 'text-white' : 'text-gray-900'
-                    )}>
-                    {option}
-                  </RadioGroup.Label>
-                )}
-                {/* if more data need to add on the options cards the data will be added here.*/}
+                <img
+                  src={option.optionImage}
+                  alt="image"
+                  className="object-cover w-16 h-10 rounded-sm md:w-20 md:h-14"
+                />
+                <RadioGroup.Label
+                  as="p"
+                  className={clsx(
+                    'font-medium',
+                    checked ? 'text-white' : 'text-gray-900'
+                  )}>
+                  {option.option}
+                </RadioGroup.Label>
               </div>
             </div>
             {checked && (

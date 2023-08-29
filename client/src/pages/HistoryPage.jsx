@@ -32,9 +32,8 @@ const HistoryPage = () => {
           <input
             className="px-2 py-1 w-full hover:outline-0 rounded-full mx-3 border border-gray-100"
             type="text"
-            placeholder="Search your poll history"
-          />
-          <button type="submit" className="px-6 py-1 text-white bg-purple-600 rounded-full">
+            placeholder="Search your poll history"></input>
+          <button type="submit" className="px-6 py-1 text-white bg-purple-600">
             Submit
           </button>
         </div>

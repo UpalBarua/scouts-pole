@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const MENU_OPTIONS = [
   { title: 'Home', link: '/' },
-  { title: 'History', link: '/history' },
   { title: 'Vote', link: '/' },
-  { title: 'Pole', link: '/' },
+  { title: 'New Pole', link: '/new-pole' },
+  { title: 'History', link: '/history' },
 ];
 
 const Navbar = () => {
