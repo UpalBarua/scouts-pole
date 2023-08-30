@@ -28,12 +28,11 @@ const HistoryPage = () => {
         Our Scouts Pole History
       </h3>
       <div className="flex justify-center py-5">
-        <div className="flex justify-around w-11/12 text-center border border-gray-100 md:w-6/12">
+        <div className="flex justify-around w-11/12 text-center  md:w-6/12">
           <input
-            className="px-2 py-1 w-full hover:outline-0"
+            className="px-2 py-1 w-full hover:outline-0 rounded-full mx-3 border border-gray-100"
             type="text"
-            placeholder="Search your poll history"
-          />
+            placeholder="Search your poll history"></input>
           <button type="submit" className="px-6 py-1 text-white bg-purple-600">
             Submit
           </button>

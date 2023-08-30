@@ -3,10 +3,10 @@ import RootLayout from '../layouts/root-layout';
 import RouteGuard from '../components/route-guard';
 
 // pages
-import HomePage from '../pages/home';
+import HistoryPage from '../pages/HistoryPage';
 import AuthPage from '../pages/auth';
+import HomePage from '../pages/home';
 import NewPolePage from '../pages/new-pole';
-import HistoryPage from '../pages/history';
 
 const router = createBrowserRouter([
   {

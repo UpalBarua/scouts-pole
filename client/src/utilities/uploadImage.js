@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios from "axios";
 
 const uploadImage = async (image) => {
   let formData = new FormData();
-  formData.append('image', image);
+  formData.append("image", image);
 
   try {
     const { data } = await axios.post(
@@ -16,9 +16,9 @@ const uploadImage = async (image) => {
       return data.data.url;
     }
 
-    console.error('Image upload failed:', response.data.error.message);
+    console.error("Image upload failed:", response.data.error.message);
   } catch (error) {
-    console.error('Error uploading image:', error);
+    console.error("Error uploading image:", error);
   }
 };
 

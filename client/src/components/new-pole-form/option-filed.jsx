@@ -1,10 +1,9 @@
-import React from 'react';
-import { useState } from 'react';
+import React from "react";
 
 const OptionField = ({ register, index, getValues, setValue }) => {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
-    setValue('fileInput', selectedFile);
+    setValue("fileInput", selectedFile);
   };
 
   return (
@@ -17,14 +16,14 @@ const OptionField = ({ register, index, getValues, setValue }) => {
           className="px-4 py-2 w-full rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
           type="text"
           {...register(`options.${index}`, {
-            required: 'Option is required',
+            required: "Option is required",
             minLength: {
               value: 3,
-              message: 'Option must be at least 3 characters',
+              message: "Option must be at least 3 characters",
             },
             maxLength: {
               value: 50,
-              message: 'Title cannot exceed 50 characters in length',
+              message: "Title cannot exceed 50 characters in length",
             },
           })}
         />
@@ -37,6 +36,7 @@ const OptionField = ({ register, index, getValues, setValue }) => {
           <img
             src={URL.createObjectURL(getValues(`optionImages${index}`)?.[0])}
             alt=""
+            className="my-2"
           />
         ) : (
           <p>fuck</p>
@@ -48,7 +48,7 @@ const OptionField = ({ register, index, getValues, setValue }) => {
           {errors[`option${index}`].message}
         </p>
       )}
-      <button onClick={() => removeInputField(index)}>remove</button>
+      <button className="mt-3" onClick={() => removeInputField(index)}>Remove</button>
     </>
   );
 };
