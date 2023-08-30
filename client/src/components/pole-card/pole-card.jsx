@@ -1,14 +1,26 @@
+
 import { RadioGroup } from '@headlessui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { CgSpinner } from 'react-icons/cg';
 import axios from '../../api/axios';
+import useUser from '../../hooks/use-user';
 import Button from '../ui/button';
 import PoleOption from './pole-option';
 
 const PoleCard = ({ _id, options, title, description }) => {
-  const [selectedOption, setSelectedOption] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
+
+  const { user } = useUser();
+
+  useEffect(() => {
+    const prevVotedOption = options.find((option) =>
+      option.votes.includes(user._id)
+    )?._id;
+
+    setSelectedOption(prevVotedOption);
+  }, [options, user, setSelectedOption]);
 
   const handleSubmit = async () => {
     try {
@@ -18,9 +30,13 @@ const PoleCard = ({ _id, options, title, description }) => {
         return toast.error('No option selected');
       }
 
+      if (!user._id) {
+        return toast.error('Something went wrong');
+      }
+
       await axios.patch(`/pole/${_id}`, {
-        userId: 'upal@mail.com',
-        optionId: selectedOption._id,
+        userId: user?._id,
+        optionId: selectedOption,
       });
 
       toast.success('Vote submitted');

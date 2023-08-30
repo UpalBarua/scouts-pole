@@ -6,17 +6,20 @@ import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import authIllustration from '../assets/auth-illustration.svg';
 import { auth, googleAuth } from '../firebase/firebase.config';
+import useUser from '../hooks/use-user';
 import createUser from '../utilities/createUser';
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const { user } = useUser();
+
   const handleAuth = async () => {
     try {
       setIsLoading(true);
-
       const { user } = await signInWithPopup(auth, googleAuth);
+      console.log(user);
       await createUser(user?.displayName, user?.email);
 
       toast.success('Logged in successfully');
@@ -27,6 +30,10 @@ const AuthPage = () => {
       setIsLoading(false);
     }
   };
+
+  // if (user._id) {
+  //   return <Navigate to="/404" />;
+  // }
 
   return (
     <section className="flex justify-center items-center h-[80dvh]">

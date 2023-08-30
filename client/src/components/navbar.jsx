@@ -2,12 +2,21 @@
 // import { Fragment } from "react";
 // import { Link } from "react-router-dom";
 
+<<<<<<< HEAD
 // const MENU_OPTIONS = [
 //   { title: "Home", link: "/" },
 //   { title: "Vote", link: "/" },
 //   { title: "New Pole", link: "/new-pole" },
 //   { title: "History", link: "/history" },
 // ];
+=======
+const MENU_OPTIONS = [
+  { title: 'Home', link: '/' },
+  { title: 'Vote', link: '/' },
+  { title: 'New Pole', link: '/new-pole' },
+  { title: 'History', link: '/history' },
+];
+>>>>>>> f34d2681a5a3d9fce0f52cccd62ef00865987202
 
 // const Navbar = () => {
   

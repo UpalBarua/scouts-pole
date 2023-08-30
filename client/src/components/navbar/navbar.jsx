@@ -1,5 +1,6 @@
 import { MdHistory, MdOutlineCreate, MdOutlineHome } from "react-icons/md";
 import { Link, NavLink } from "react-router-dom";
+import useUser from '../../hooks/use-user';
 import LogoutButton from "../logout-button";
 import MobileMenu from "./mobile-menu";
 
@@ -22,6 +23,8 @@ const MENU_OPTIONS = [
 ];
 
 const Navbar = () => {
+  const { user } = useUser();
+
   return (
     <header className="container flex sticky top-0 z-20 justify-between items-center py-2 md:py-3 bg-primary-800">
       <Link to="/">
@@ -42,9 +45,11 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          <li>
-            <LogoutButton />
-          </li>
+          {user._id ? (
+            <li>
+              <LogoutButton />
+            </li>
+          ) : null}
         </ul>
         <MobileMenu menuOptions={MENU_OPTIONS} />
       </nav>

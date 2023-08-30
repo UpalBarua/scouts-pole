@@ -1,11 +1,13 @@
 import clsx from 'clsx';
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { BiImageAdd, BiLoaderAlt } from 'react-icons/bi';
+import { BiImageAdd } from 'react-icons/bi';
+import { CgSpinner } from 'react-icons/cg';
 import { IoMdClose } from 'react-icons/io';
 import axios from '../api/axios';
 import Button from '../components/ui/button';
-import uploadImage from '../utilities/uploadImage.js';
+import uploadImage from '../utilities/uploadImage';
+
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
@@ -15,7 +17,7 @@ const NewPole = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm();
 
@@ -41,7 +43,9 @@ const NewPole = () => {
       };
 
       await axios.post('/pole', newPole);
+
       setOptionImages([]);
+      setOptionInputFields([null]);
       reset();
     } catch (error) {
       console.log(error);
@@ -117,8 +121,7 @@ const NewPole = () => {
         </fieldset>
         <div className="space-y-5">
           {optionInputFields.map((_, index) => (
-            <Fragment key={index}>
-            <fieldset className="space-y-3">
+            <fieldset className="space-y-3" key={index}>
               <label className="font-medium">Option {index + 1}</label>
               <div className="flex gap-2 items-center">
                 <input
@@ -138,7 +141,7 @@ const NewPole = () => {
                 />
                 <input
                   id={`file-input-${index}`}
-                  className="hidden mt-4"
+                  className="hidden"
                   type="file"
                   onChange={(e) =>
                     setOptionImages((prevOptionImages) => {
@@ -175,30 +178,22 @@ const NewPole = () => {
                   {errors.options[index].message}
                 </p>
               )}
-              <button className='mt-2' onClick={() => removeInputField(index)}>Remove</button>
-              </fieldset>
-            </Fragment>
+            </fieldset>
           ))}
-          </div>
-        <button
-          onClick={addNewOptionInputField}
-          type="button"
-          className="px-6 py-1 mt-4 font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:from-purple-700 hover:to-pink-700 hover:scale-105">
-          Add Input
-        </button>
-        <button
-          disabled={isSubmitting}
-          type="submit"
-          className="px-6 py-1 mt-4 ml-3 font-semibold text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg shadow-md transition duration-300 ease-in-out transform disabled:bg-gray-500 hover:from-purple-700 hover:to-pink-700 hover:scale-105">
-          Submit
-        </button>
+        </div>
         <div className="flex gap-2 justify-end items-center pt-4">
           <Button onClick={addNewOptionInputField} variant="secondary">
             Add Input
           </Button>
           <Button disabled={isPoleSubmitting} type="submit" variant="primary">
-            {isPoleSubmitting && <BiLoaderAlt className="animate-spin" />}
-            <span>Submit Pole</span>
+            {isPoleSubmitting ? (
+              <>
+                <CgSpinner className="text-2xl animate-spin" />
+                <span>Submitting</span>
+              </>
+            ) : (
+              <span>Submit Pole</span>
+            )}
           </Button>
         </div>
       </form>

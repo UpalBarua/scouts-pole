@@ -4,10 +4,10 @@ import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { twMerge } from 'tailwind-merge';
 
-const PoleOption = ({ option, optionImage }) => {
+const PoleOption = ({ _id, option, optionImage, votes }) => {
   return (
     <RadioGroup.Option
-      value={option}
+      value={_id}
       className={({ active, checked }) =>
         twMerge(
           clsx(
