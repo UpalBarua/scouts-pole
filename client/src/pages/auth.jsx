@@ -1,12 +1,11 @@
-import { useState } from 'react';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleAuth } from '../firebase/firebase.config';
-import authIllustration from '../assets/auth-illustration.svg';
-import axios from '../api/axios';
-import { FcGoogle } from 'react-icons/fc';
-import { CgSpinner } from 'react-icons/cg';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { CgSpinner } from 'react-icons/cg';
+import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
+import authIllustration from '../assets/auth-illustration.svg';
+import { auth, googleAuth } from '../firebase/firebase.config';
 import createUser from '../utilities/createUser';
 
 const AuthPage = () => {
@@ -24,7 +23,6 @@ const AuthPage = () => {
       navigate('/');
     } catch (error) {
       console.error(error);
-      toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }

@@ -42,8 +42,8 @@ const PoleCard = ({ _id, options, title, description }) => {
         value={selectedOption}
         onChange={setSelectedOption}
         className="space-y-3">
-        {options?.map((option) => (
-          <PoleOption key={option._id} {...option} />
+        {options?.map((option,index) => (
+          <PoleOption key={index} {...option} />
         ))}
       </RadioGroup>
       <div className="flex gap-3 justify-end items-center pt-4">

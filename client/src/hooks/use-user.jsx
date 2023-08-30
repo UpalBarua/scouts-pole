@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useAuth } from '../contexts/auth-context';
 import axios from '../api/axios';
+import { useAuth } from '../contexts/auth-context';
 
 const useUser = () => {
   const [user, setUser] = useState({});
@@ -18,7 +18,7 @@ const useUser = () => {
         const { data } = await axios.get(`/user/${email}`);
         setUser(data);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         setIsError(true);
       } finally {
         setIsLoading(false);

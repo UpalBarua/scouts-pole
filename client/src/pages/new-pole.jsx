@@ -41,7 +41,6 @@ const NewPole = () => {
       };
 
       await axios.post('/pole', newPole);
-
       setOptionImages([]);
       reset();
     } catch (error) {

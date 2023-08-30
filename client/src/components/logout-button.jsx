@@ -8,12 +8,12 @@ import { auth } from '../firebase/firebase.config';
 import Button from './ui/button';
 
 const LogoutButton = ({ className }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
-      setIsLoading(true);
+      setLoading(true);
       await signOut(auth);
       toast.success('Logged out');
       navigate('/auth');
@@ -21,17 +21,17 @@ const LogoutButton = ({ className }) => {
       console.error(error);
       toast.error('Something went wrong');
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
   };
 
   return (
     <Button
       variant="danger"
-      disabled={isLoading}
+      disabled={loading}
       className={'px-4 py-2'}
       onClick={handleLogout}>
-      {isLoading ? (
+      {loading ? (
         <>
           <CgSpinner className="text-2xl animate-spin" />
           <span>Logging Out</span>

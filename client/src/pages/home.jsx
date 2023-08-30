@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import PoleCard from '../components/pole-card/pole-card';
-import useUser from '../hooks/use-user';
 
 const HomePage = () => {
   const [poles, setPoles] = useState([]);
-  const { user } = useUser();
 
   useEffect(() => {
     const fetchPoles = async () => {
