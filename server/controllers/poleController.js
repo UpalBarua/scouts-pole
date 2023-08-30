@@ -9,16 +9,14 @@ export const getPoles = async (req, res) => {
     const poles = await polesCollection.find({}).toArray();
     res.status(200).json(poles);
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error fetching poles', error: error.message });
+    next(error)
   }
 };
 
 // Get a pole by its ID
 export const getPoleById = async (req, res) => {
   try {
-    const poleId = req.params.poleId;
+    const {poleId} = req.params;
     const query = { _id: new ObjectId(poleId) };
 
     const pole = await polesCollection.findOne(query);
@@ -29,9 +27,7 @@ export const getPoleById = async (req, res) => {
       return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error fetching pole', error: error.message });
+    next(error)
   }
 };
 
@@ -65,16 +61,14 @@ export const createPole = async (req, res) => {
 
     res.status(400).json({ message: 'Failed to create pole' });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error creating pole', error: error.message });
+    next(error)
   }
 };
 
 // Update a pole by its ID
 export const updatePole = async (req, res) => {
   try {
-    const poleId = req.params.poleId;
+    const {poleId} = req.params;
     const updatedPole = req.body;
 
     const query = { _id: new ObjectId(poleId) };
@@ -88,16 +82,14 @@ export const updatePole = async (req, res) => {
       return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error updating pole', error: error.message });
+    next(error)
   }
 };
 
 // Delete a pole by its ID
 export const deletePole = async (req, res) => {
   try {
-    const poleId = req.params.poleId;
+    const {poleId} = req.params;
     const query = { _id: new ObjectId(poleId) };
 
     const result = await polesCollection.deleteOne(query);
@@ -108,9 +100,7 @@ export const deletePole = async (req, res) => {
       return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error deleting pole', error: error.message });
+    next(error)
   }
 };
 
@@ -150,6 +140,6 @@ export const updatePoleVotes = async (req, res) => {
 
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).json(error);
+    next(error)
   }
 };
