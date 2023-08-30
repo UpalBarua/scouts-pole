@@ -4,10 +4,11 @@ import RouteGuard from '../components/route-guard';
 import ProtectAdmin from '../Protected-Routes/ProtectAdmin';
 
 // pages
-import HistoryPage from '../pages/HistoryPage';
+import HistoryPage from '../pages/history';
 import AuthPage from '../pages/auth';
 import HomePage from '../pages/home';
 import NewPolePage from '../pages/new-pole';
+import ErrorPage from '../pages/error';
 
 const router = createBrowserRouter([
   {
@@ -28,13 +29,21 @@ const router = createBrowserRouter([
       },
       {
         path: '/new-pole',
-        element:<ProtectAdmin> <NewPolePage /></ProtectAdmin>,
+        element: (
+          <ProtectAdmin>
+            <NewPolePage />
+          </ProtectAdmin>
+        ),
       },
     ],
   },
   {
     path: '/auth',
     element: <AuthPage />,
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ]);
 

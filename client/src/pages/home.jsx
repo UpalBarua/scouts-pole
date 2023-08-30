@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from '../api/axios';
 import useUser from '../hooks/use-user';
 import { CgSpinner } from 'react-icons/cg';
+import PoleCard from '../components/pole-card/pole-card';
 
 const HomePage = () => {
   const [poles, setPoles] = useState([]);
