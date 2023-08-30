@@ -7,6 +7,7 @@ import HomePage from '../pages/home';
 import AuthPage from '../pages/auth';
 import NewPolePage from '../pages/new-pole';
 import HistoryPage from '../pages/history';
+import ProtectAdmin from '../Protected-Routes/ProtectAdmin';
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/new-pole',
-        element: <NewPolePage />,
+        element:<ProtectAdmin> <NewPolePage /></ProtectAdmin>,
       },
     ],
   },
