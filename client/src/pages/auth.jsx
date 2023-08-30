@@ -2,16 +2,18 @@ import { useState } from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, googleAuth } from '../firebase/firebase.config';
 import authIllustration from '../assets/auth-illustration.svg';
-import axios from '../api/axios';
 import { FcGoogle } from 'react-icons/fc';
 import { CgSpinner } from 'react-icons/cg';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import createUser from '../utilities/createUser';
+import useUser from '../hooks/use-user';
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+
+  const { user } = useUser();
 
   const handleAuth = async () => {
     try {
@@ -29,6 +31,10 @@ const AuthPage = () => {
       setIsLoading(false);
     }
   };
+
+  // if (user._id) {
+  //   return <Navigate to="/404" />;
+  // }
 
   return (
     <section className="flex justify-center items-center h-[80dvh]">

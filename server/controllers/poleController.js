@@ -120,7 +120,6 @@ export const updatePoleVotes = async (req, res) => {
 
     const updatedOptions = filteredOptions.map((option) => {
       if (option._id.toString() === optionId) {
-        console.log(option);
         option.votes.push(userId);
       }
 
