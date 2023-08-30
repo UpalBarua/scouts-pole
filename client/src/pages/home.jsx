@@ -1,45 +1,22 @@
-import { useEffect, useState } from 'react';
-import axios from '../api/axios';
-import useUser from '../hooks/use-user';
 import { CgSpinner } from 'react-icons/cg';
 import PoleCard from '../components/pole-card/pole-card';
+import usePoles from '../hooks/use-poles';
 
 const HomePage = () => {
-  const [poles, setPoles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const { user } = useUser();
-
-  useEffect(() => {
-    const fetchPoles = async () => {
-      try {
-        setIsLoading(true);
-
-        const { data } = await axios.get('/pole');
-        setPoles(data);
-        setIsError(false);
-      } catch (error) {
-        console.error(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchPoles();
-  }, []);
+  const { poles, polesLoading, polesError } = usePoles();
 
   return (
-    <main className="container grid">
-      <h2 className="pb-5 text-2xl font-bold">Active Poles</h2>
+    <main className="container grid py-5 md:py-10">
+      <h2 className="pb-5 text-2xl font-bold text-center text-white md:text-3xl md:pb-8">
+        Active Poles
+      </h2>
       <div className="mx-auto space-y-4 max-w-2xl">
-        {isLoading ? (
+        {polesLoading ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
             <CgSpinner className="text-2xl animate-spin" />
             <p>loading poles...</p>
           </div>
-        ) : isError ? (
+        ) : polesError ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
             <p>failed to load poles</p>
           </div>

@@ -48,7 +48,7 @@ const PoleCard = ({ _id, options, title, description }) => {
   };
 
   return (
-    <div className="flex flex-col p-4 space-y-2 w-full max-w-full rounded-lg shadow sm:p-6 bg-primary-900">
+    <div className="flex flex-col p-4 space-y-2 w-full md:w-[42rem] max-w-2xl rounded-lg shadow sm:p-6 bg-primary-900">
       <h3 className="text-lg font-bold text-white sm:text-xl md:text-2xl">
         {title}
       </h3>
