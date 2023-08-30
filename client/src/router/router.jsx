@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/root-layout';
 import RouteGuard from '../components/route-guard';
+import ProtectAdmin from '../Protected-Routes/ProtectAdmin';
 
 // pages
 import HistoryPage from '../pages/HistoryPage';
@@ -27,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/new-pole',
-        element: <NewPolePage />,
+        element:<ProtectAdmin> <NewPolePage /></ProtectAdmin>,
       },
     ],
   },
