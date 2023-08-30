@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import PoleCard from '../components/pole-card/pole-card';
 import axios from '../api/axios';
 import useUser from '../hooks/use-user';
 import { CgSpinner } from 'react-icons/cg';
