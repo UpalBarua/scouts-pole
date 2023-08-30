@@ -8,8 +8,10 @@ const createUser = async (name, email) => {
       role: 'user',
     });
   } catch (error) {
-    console.log(error);
-    if (error.response.status !== 409) throw error;
+    if (error.response.status !== 409) {
+      console.error(error);
+      throw error;
+    }
   }
 };
 

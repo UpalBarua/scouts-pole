@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/root-layout';
+import RouteGuard from '../components/route-guard';
 
 // pages
 import HistoryPage from '../pages/HistoryPage';
@@ -10,21 +11,29 @@ import NewPolePage from '../pages/new-pole';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: (
+      <RouteGuard>
+        <RootLayout />
+      </RouteGuard>
+    ),
     children: [
       {
         index: true,
         element: <HomePage />,
       },
       {
-        path: '/auth',
-        element: <AuthPage />,
+        path: '/history',
+        element: <HistoryPage />,
       },
       {
         path: '/new-pole',
         element: <NewPolePage />,
       },
     ],
+  },
+  {
+    path: '/auth',
+    element: <AuthPage />,
   },
 ]);
 
