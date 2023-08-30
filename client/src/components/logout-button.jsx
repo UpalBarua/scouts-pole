@@ -18,7 +18,7 @@ const LogoutButton = ({ className }) => {
       toast.success('Logged out');
 
       navigate('/auth');
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error(error);
       toast.error('Something went wrong');
