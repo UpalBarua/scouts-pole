@@ -14,9 +14,12 @@ const LogoutButton = ({ className }) => {
   const handleLogout = async () => {
     try {
       setIsLoading(true);
+
       await signOut(auth);
       toast.success('Logged out');
+
       navigate('/auth');
+      window.location.reload();
     } catch (error) {
       console.error(error);
       toast.error('Something went wrong');

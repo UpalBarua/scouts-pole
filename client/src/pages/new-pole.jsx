@@ -7,6 +7,7 @@ import { BiImageAdd, BiLoaderAlt } from 'react-icons/bi';
 import { IoMdClose } from 'react-icons/io';
 import clsx from 'clsx';
 import Button from '../components/ui/button';
+import { CgSpinner } from 'react-icons/cg';
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
@@ -16,7 +17,7 @@ const NewPole = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm();
 
@@ -44,6 +45,7 @@ const NewPole = () => {
       await axios.post('/pole', newPole);
 
       setOptionImages([]);
+      setOptionInputFields([null]);
       reset();
     } catch (error) {
       console.log(error);
@@ -184,8 +186,14 @@ const NewPole = () => {
             Add Input
           </Button>
           <Button disabled={isPoleSubmitting} type="submit" variant="primary">
-            {isPoleSubmitting && <BiLoaderAlt className="animate-spin" />}
-            <span>Submit Pole</span>
+            {isPoleSubmitting ? (
+              <>
+                <CgSpinner className="text-2xl animate-spin" />
+                <span>Submitting</span>
+              </>
+            ) : (
+              <span>Submit Pole</span>
+            )}
           </Button>
         </div>
       </form>

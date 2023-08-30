@@ -1,9 +1,8 @@
 import { Link, NavLink } from 'react-router-dom';
 import { MdOutlineCreate, MdHistory, MdOutlineHome } from 'react-icons/md';
 import MobileMenu from './mobile-menu';
-import Button from '../ui/button';
-import { BiLogOut } from 'react-icons/bi';
 import LogoutButton from '../logout-button';
+import useUser from '../../hooks/use-user';
 
 const MENU_OPTIONS = [
   {
@@ -24,6 +23,8 @@ const MENU_OPTIONS = [
 ];
 
 const Navbar = () => {
+  const { user } = useUser();
+
   return (
     <header className="container flex sticky top-0 z-20 justify-between items-center py-2 md:py-3 bg-primary-800">
       <Link to="/">
@@ -43,9 +44,11 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          <li>
-            <LogoutButton />
-          </li>
+          {user._id ? (
+            <li>
+              <LogoutButton />
+            </li>
+          ) : null}
         </ul>
         <MobileMenu menuOptions={MENU_OPTIONS} />
       </nav>

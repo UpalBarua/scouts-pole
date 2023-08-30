@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from '../layouts/root-layout';
+import RouteGuard from '../components/route-guard';
 
 // pages
 import HomePage from '../pages/home';
@@ -10,15 +11,15 @@ import HistoryPage from '../pages/history';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />,
+    element: (
+      <RouteGuard>
+        <RootLayout />
+      </RouteGuard>
+    ),
     children: [
       {
         index: true,
         element: <HomePage />,
-      },
-      {
-        path: '/auth',
-        element: <AuthPage />,
       },
       {
         path: '/history',
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <NewPolePage />,
       },
     ],
+  },
+  {
+    path: '/auth',
+    element: <AuthPage />,
   },
 ]);
 
