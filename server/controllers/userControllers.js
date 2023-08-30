@@ -14,15 +14,14 @@ export const getUsers = async (req, res) => {
 
     res.status(404).json({ message: 'User not found' });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error fetching users', error: error.message });
+    next(error)
   }
 };
 
 export const createUser = async (req, res) => {
   try {
     const { email, name } = req.body;
+    console.log(req);
 
     if (!email || !name) {
       return res.status(400).json({ message: 'Missing required fields' });
@@ -37,9 +36,7 @@ export const createUser = async (req, res) => {
     const newUser = await usersCollection.insertOne({ email, name });
     res.status(201).json({ message: 'User created successfully', newUser });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error creating user', error: error.message });
+    next(error)
   }
 };
 
@@ -66,9 +63,7 @@ export const updateUser = async (req, res) => {
 
     res.status(404).json({ message: 'User not found' });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error updating user', error: error.message });
+    next(error)
   }
 };
 
@@ -84,8 +79,6 @@ export const deleteUser = async (req, res) => {
 
     res.status(404).json({ message: 'User not found' });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: 'Error deleting user', error: error.message });
+    next(error)
   }
 };
