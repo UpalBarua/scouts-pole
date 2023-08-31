@@ -1,8 +1,8 @@
 import React from "react";
-import useUser from "../hooks/use-user";
-import { Navigate } from "react-router-dom";
 import { CgSpinner } from "react-icons/cg";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth-context";
+import useUser from "../hooks/use-user";
 
 const RouteGuard = ({ children }) => {
   const { user, userLoading } = useUser();

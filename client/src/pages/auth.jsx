@@ -1,13 +1,13 @@
-import { useState } from 'react';
 import { signInWithPopup } from 'firebase/auth';
-import { auth, googleAuth } from '../firebase/firebase.config';
-import authIllustration from '../assets/auth-illustration.svg';
-import { FcGoogle } from 'react-icons/fc';
-import { CgSpinner } from 'react-icons/cg';
+import { useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { Navigate, useNavigate } from 'react-router-dom';
-import createUser from '../utilities/createUser';
+import { CgSpinner } from 'react-icons/cg';
+import { FcGoogle } from 'react-icons/fc';
+import { useNavigate } from 'react-router-dom';
+import authIllustration from '../assets/auth-illustration.svg';
+import { auth, googleAuth } from '../firebase/firebase.config';
 import useUser from '../hooks/use-user';
+import createUser from '../utilities/createUser';
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,15 +18,13 @@ const AuthPage = () => {
   const handleAuth = async () => {
     try {
       setIsLoading(true);
-
       const { user } = await signInWithPopup(auth, googleAuth);
+      console.log(user);
       await createUser(user?.displayName, user?.email);
-
       toast.success('Logged in successfully');
       navigate('/');
     } catch (error) {
       console.error(error);
-      toast.error('Something went wrong');
     } finally {
       setIsLoading(false);
     }

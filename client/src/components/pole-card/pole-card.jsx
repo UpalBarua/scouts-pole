@@ -1,12 +1,14 @@
-import { useEffect, useMemo, useState } from 'react';
+
 import { RadioGroup } from '@headlessui/react';
-import PoleOption from './pole-option';
-import axios from '../../api/axios';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { CgSpinner } from 'react-icons/cg';
-import Button from '../ui/button';
+import axios from '../../api/axios';
 import useUser from '../../hooks/use-user';
 import ResultChart from '../../chart/ResultChart';
+import Button from '../ui/button';
+import PoleOption from './pole-option';
+
 
 const PoleCard = ({ _id, options, title, description }) => {
   const { user } = useUser()
@@ -97,8 +99,6 @@ const PoleCard = ({ _id, options, title, description }) => {
             </div>
           )
       }
-    </div>
-  );
-};
+}
 
 export default PoleCard;

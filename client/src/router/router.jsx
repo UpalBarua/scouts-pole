@@ -1,17 +1,20 @@
-import { createBrowserRouter } from 'react-router-dom';
-import RootLayout from '../layouts/root-layout';
-import RouteGuard from '../components/route-guard';
-import ProtectAdmin from '../Protected-Routes/ProtectAdmin';
+import { createBrowserRouter } from "react-router-dom";
+import ProtectAdmin from "../Protected-Routes/ProtectAdmin";
+import RouteGuard from "../components/route-guard";
+import RootLayout from "../layouts/root-layout";
 
 // pages
-import HistoryPage from '../pages/HistoryPage';
+import HistoryPage from '../pages/history';
 import AuthPage from '../pages/auth';
 import HomePage from '../pages/home';
 import NewPolePage from '../pages/new-pole';
+import ErrorPage from '../pages/error';
+
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
+    errorElement: <ErrorPage />,
     element: (
       <RouteGuard>
         <RootLayout />
@@ -23,18 +26,30 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
-        path: '/history',
+        path: "/history",
         element: <HistoryPage />,
       },
       {
-        path: '/new-pole',
-        element: <ProtectAdmin> <NewPolePage /></ProtectAdmin>,
+        path: "/history",
+        element: <HistoryPage />,
+      },
+      {
+        path: "/new-pole",
+        element: (
+          <ProtectAdmin>
+            <NewPolePage />
+          <ProtectAdmin />
+        ),
       },
     ],
   },
   {
-    path: '/auth',
+    path: "/auth",
     element: <AuthPage />,
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ]);
 

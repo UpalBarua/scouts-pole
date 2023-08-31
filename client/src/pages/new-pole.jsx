@@ -1,14 +1,12 @@
-import { Fragment, useState } from 'react';
-import { get, useForm } from 'react-hook-form';
-import axios from '../api/axios';
-import OptionField from '../components/new-pole-form/option-filed';
-import uploadImage from '../utilities/uploadImage';
-import { BiImageAdd, BiLoaderAlt } from 'react-icons/bi';
-import { IoMdClose } from 'react-icons/io';
 import clsx from 'clsx';
-import Button from '../components/ui/button';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { BiImageAdd } from 'react-icons/bi';
 import { CgSpinner } from 'react-icons/cg';
-
+import { IoMdClose } from 'react-icons/io';
+import axios from '../api/axios';
+import Button from '../components/ui/button';
+import uploadImage from '../utilities/uploadImage';
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
@@ -73,11 +71,13 @@ const NewPole = () => {
   };
 
   return (
-    <section className="container">
+    <main className="container py-5 max-w-7xl">
+      <h2 className="text-2xl font-bold text-center text-white md:text-3xl md:pb-8">
+        Add a new pole
+      </h2>
       <form
-        className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900 sm:my-5"
+        className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
         onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="text-2xl font-bold text-white">Add a new pole</h2>
         <fieldset className="space-y-2">
           <label className="font-medium">Title</label>
           <input
@@ -198,7 +198,7 @@ const NewPole = () => {
           </Button>
         </div>
       </form>
-    </section>
+    </main>
   );
 };
 

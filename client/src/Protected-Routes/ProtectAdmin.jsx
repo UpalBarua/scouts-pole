@@ -1,8 +1,9 @@
-import React from "react";
-import { useAuth } from "../contexts/auth-context";
-import useUser from "../Hooks/use-user";
-import { CgSpinner } from "react-icons/cg";
-import { Navigate } from "react-router-dom";
+import React from 'react';
+import { useAuth } from '../contexts/auth-context';
+import useUser from '../hooks/use-user';
+import { CgSpinner } from 'react-icons/cg';
+import { Navigate } from 'react-router-dom';
+
 const ProtectAdmin = ({ children }) => {
   const { user, isLoading } = useAuth();
   const { user: admin, userLoading } = useUser();
@@ -16,10 +17,10 @@ const ProtectAdmin = ({ children }) => {
       </div>
     );
   }
-  if (user && admin?.role === "admin") {
+  if (user && admin?.role === 'admin') {
     return children;
   } else {
-    return <Navigate to={"/auth"} replace></Navigate>;
+    return <Navigate to={'/auth'} replace></Navigate>;
   }
 };
 
