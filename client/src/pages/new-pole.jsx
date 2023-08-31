@@ -20,7 +20,7 @@ const NewPole = () => {
     reset,
   } = useForm();
 
-  const onSubmit = async ({ title, description, options }) => {
+  const onSubmit = async ({ title, description, options, expiration }) => {
     try {
       setIsPoleSubmitting(true);
 
@@ -39,6 +39,9 @@ const NewPole = () => {
         title,
         description,
         options: optionsArray,
+        createdAt: new Date(),
+        expiresAt: new Date(expiration.date + 'T' + expiration.time),
+        isActive: true,
       };
 
       await axios.post('/pole', newPole);
@@ -182,6 +185,33 @@ const NewPole = () => {
             </fieldset>
           ))}
         </div>
+        <fieldset className="space-y-2">
+          <label className="font-medium">Expiration</label>
+          <div className="flex gap-3 items-center">
+            <input
+              className="px-4 py-2.5 w-full rounded-lg border border-primary-600 transition-colors shadow-sm bg-primary-700 outline-none focus-visible:border-accent-500"
+              type="date"
+              {...register('expiration.date', {
+                required: 'Expiration date is required',
+                validate: (val) =>
+                  new Date(val) < new Date() ? 'Invalid date' : null,
+              })}
+            />
+            <input
+              className="px-4 py-2.5 w-full rounded-lg border border-primary-600 transition-colors shadow-sm bg-primary-700 outline-none focus-visible:border-accent-500"
+              type="time"
+              {...register('expiration.time', {
+                required: 'Expiration time is required',
+              })}
+            />
+          </div>
+          {errors.expiration && (
+            <p className="text-sm text-red-500">
+              {errors.expiration.time?.message}{' '}
+              {errors.expiration.date?.message}
+            </p>
+          )}
+        </fieldset>
         <div className="flex gap-2 justify-end items-center pt-4">
           <Button onClick={addNewOptionInputField} variant="secondary">
             Add Input

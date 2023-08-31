@@ -1,29 +1,29 @@
 import axios from '../api/axios';
 import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import Button from '../components/ui/button';
+import Button from './ui/button';
 
 const ResultChart = ({ poleId, handleVoteAgain }) => {
-
-  const [poleData, setPoleData] = useState([]) || []
+  const [poleData, setPoleData] = useState([]) || [];
   useEffect(() => {
-    axios.get(`/pole/${poleId}`)
-      .then(response => {
+    axios
+      .get(`/pole/${poleId}`)
+      .then((response) => {
         setPoleData(response.data.options);
       })
-      .catch(error => {
-        console.error("Error fetching pole data:", error);
+      .catch((error) => {
+        console.error('Error fetching pole data:', error);
       });
   }, [poleId]);
 
-  const data = poleData.map(optionData => ({
+  const data = poleData.map((optionData) => ({
     name: optionData.option,
     image: optionData.optionImage,
-    value: optionData.votes.length
+    value: optionData.votes.length,
     // value: optionData.votes.length > 0 ? optionData.votes.length : 1  //uncomment this if need to arrange the cell and comment the previous line
   }));
 
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   const isSmallScreen = window.innerWidth <= 768;
 
   const RADIAN = Math.PI / 180;
@@ -34,9 +34,9 @@ const ResultChart = ({ poleId, handleVoteAgain }) => {
     innerRadius,
     outerRadius,
     percent,
-    index
+    index,
   }) => {
-    const radiusMultiplier = isSmallScreen ? .5 : 1.2;
+    const radiusMultiplier = isSmallScreen ? 0.5 : 1.2;
     const radius = innerRadius + (outerRadius - innerRadius) * radiusMultiplier;
 
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -48,14 +48,12 @@ const ResultChart = ({ poleId, handleVoteAgain }) => {
         y={y}
         fill="white"
         textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline="central"
-      >
+        dominantBaseline="central">
         {!isSmallScreen && data[index].name + ' : '} {data[index].value}
         {/* {`${(percent * 100).toFixed(0)}%`} */}
       </text>
     );
   };
-
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -65,7 +63,7 @@ const ResultChart = ({ poleId, handleVoteAgain }) => {
       let content;
       if (typeof name === 'string') {
         content = (
-          <div className='p-2 text-black bg-white'>
+          <div className="p-2 text-black bg-white">
             {image && <img src={image} alt="Option" width="100" height="100" />}
             {image ? (
               <p>
@@ -80,22 +78,20 @@ const ResultChart = ({ poleId, handleVoteAgain }) => {
         );
       }
 
-      return (
-        <div className="custom-tooltip">
-          {content}
-        </div>
-      );
+      return <div className="custom-tooltip">{content}</div>;
     }
 
     return null;
   };
 
-
   return (
-    <div className='flex flex-col items-center justify-center'>
-      <h2 className='flex flex-col items-center text-2xl font-bold text-emerald-500'>
+    <div className="flex flex-col justify-center items-center">
+      <h2 className="flex flex-col items-center text-2xl font-bold text-emerald-500">
         Poll results :
-        <span className='text-sm font-normal text-gray-500'> click or hover to see more</span>
+        <span className="text-sm font-normal text-gray-500">
+          {' '}
+          click or hover to see more
+        </span>
       </h2>
 
       <div className="overflow-auto chart-container">
@@ -109,22 +105,22 @@ const ResultChart = ({ poleId, handleVoteAgain }) => {
             outerRadius={100}
             fill="#8884d8"
             dataKey="value"
-            cursor='pointer'
-          >
+            cursor="pointer">
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`}
+              <Cell
+                key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
-              // fill='#272730' // uncomment if donot want to show color variant
+                // fill='#272730' // uncomment if donot want to show color variant
               />
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </div>
-      <button variant="primary"
+      <button
+        variant="primary"
         onClick={() => handleVoteAgain(true)}
-        className='px-4 py-2 my-2 text-white bg-blue-500 rounded hover:bg-blue-700'
-      >
+        className="px-4 py-2 my-2 text-white bg-blue-500 rounded hover:bg-blue-700">
         Vote again
       </button>
     </div>

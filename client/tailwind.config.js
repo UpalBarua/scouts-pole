@@ -6,7 +6,7 @@ export default {
     extend: {
       container: {
         center: true,
-        padding: '1rem',
+        padding: '1.5rem',
       },
       fontFamily: {
         primary: ['Roboto', 'sans-serif'],
@@ -42,5 +42,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
