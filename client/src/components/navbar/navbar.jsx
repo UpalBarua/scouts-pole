@@ -26,18 +26,18 @@ const Navbar = () => {
   const { user } = useUser();
 
   return (
-    <header className="container flex sticky top-0 z-20 justify-between items-center py-2 md:py-3 bg-primary-800">
+    <header className="container sticky top-0 z-20 flex items-center justify-between py-2 md:py-3 bg-primary-800">
       <Link to="/">
         <h1 className="text-2xl font-bold text-white">
           Scouts<span className="text-accent-500">pole</span>
         </h1>
       </Link>
       <nav>
-        <ul className="hidden gap-1 items-center pt-2 md:gap-2 sm:flex">
+        <ul className="items-center hidden gap-1 pt-2 md:gap-2 sm:flex">
           {MENU_OPTIONS.map(({ title, link, Icon }) => (
             <li key={link}>
               <NavLink
-                className="flex gap-1 items-center px-4 py-2 rounded-lg transition-colors text md:text-lg hover:bg-primary-700"
+                className="flex items-center gap-1 px-4 py-2 transition-colors rounded-lg text md:text-lg hover:bg-primary-700"
                 to={link}>
                 {Icon}
                 {title}

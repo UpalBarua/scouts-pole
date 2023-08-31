@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/new-pole',
-        element:<ProtectAdmin> <NewPolePage /></ProtectAdmin>,
+        element: <ProtectAdmin> <NewPolePage /></ProtectAdmin>,
       },
     ],
   },
