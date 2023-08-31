@@ -4,11 +4,12 @@ import RouteGuard from "../components/route-guard";
 import RootLayout from "../layouts/root-layout";
 
 // pages
-import ErrorPage from "../components/ErrorPage/ErrorPage";
-import HistoryPage from "../pages/HistoryPage";
-import AuthPage from "../pages/auth";
-import HomePage from "../pages/home";
-import NewPolePage from "../pages/new-pole";
+import HistoryPage from '../pages/history';
+import AuthPage from '../pages/auth';
+import HomePage from '../pages/home';
+import NewPolePage from '../pages/new-pole';
+import ErrorPage from '../pages/error';
+
 
 const router = createBrowserRouter([
   {
@@ -36,9 +37,8 @@ const router = createBrowserRouter([
         path: "/new-pole",
         element: (
           <ProtectAdmin>
-            {" "}
             <NewPolePage />
-          </ProtectAdmin>
+          <ProtectAdmin />
         ),
       },
     ],
@@ -46,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <AuthPage />,
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ]);
 

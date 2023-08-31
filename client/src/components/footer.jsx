@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 const footer_menu = [
@@ -35,7 +36,6 @@ const Footer = () => {
                 {title}
               </Link>
             </li>
-          ))}
         </ul>
         <div className="flex justify-center py-3">
           <Link to="/" className="mx-3">
