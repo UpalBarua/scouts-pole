@@ -26,7 +26,7 @@ const Navbar = () => {
   const { user } = useUser();
 
   return (
-    <header className="container flex sticky top-0 z-20 justify-between items-center py-2 md:py-3 bg-primary-800">
+    <header className="container flex sticky top-0 z-20 justify-between items-center py-2 max-w-7xl md:py-3 bg-primary-800">
       <Link to="/">
         <h1 className="text-2xl font-bold text-white">
           Scouts<span className="text-accent-500">pole</span>

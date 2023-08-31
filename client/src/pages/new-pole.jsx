@@ -9,7 +9,6 @@ import clsx from 'clsx';
 import Button from '../components/ui/button';
 import { CgSpinner } from 'react-icons/cg';
 
-
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
   const [optionImages, setOptionImages] = useState([]);
@@ -73,11 +72,13 @@ const NewPole = () => {
   };
 
   return (
-    <section className="container">
+    <main className="container py-5 max-w-7xl">
+      <h2 className="text-2xl font-bold text-center text-white md:text-3xl md:pb-8">
+        Add a new pole
+      </h2>
       <form
-        className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900 sm:my-5"
+        className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
         onSubmit={handleSubmit(onSubmit)}>
-        <h2 className="text-2xl font-bold text-white">Add a new pole</h2>
         <fieldset className="space-y-2">
           <label className="font-medium">Title</label>
           <input
@@ -198,7 +199,7 @@ const NewPole = () => {
           </Button>
         </div>
       </form>
-    </section>
+    </main>
   );
 };
 

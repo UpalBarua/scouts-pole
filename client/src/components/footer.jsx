@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const contributors = [
+const CONTRIBUTORS = [
   {
     name: 'Upal Barua',
     image:
@@ -42,42 +42,28 @@ const contributors = [
 
 const Footer = () => {
   return (
-    <footer className="container flex justify-between py-5 mt-6">
-      {/* footer left content */}
-      <div className="">
-        <p className="text-2xl font-bold">
-          Scouts
-          <span className="pl-1 text-purple-600">Pole</span>
+    <footer className="container flex flex-col gap-4 justify-between py-5 max-w-7xl sm:flex-row sm:pt-8 md:pt-12">
+      <div className="w-56">
+        <Link to="/">
+          <h2 className="text-2xl font-bold text-white">
+            Scouts<span className="text-accent-500">pole</span>
+          </h2>
+        </Link>
+        <p className="text-primary-300">
+          &copy; All right reserved by team Script Scouts
         </p>
-        <h4 className="w-48 text-slate-500">
-          &copy; All right reserved by team Scripts Scouts
-        </h4>
       </div>
-
-      {/* footer center content */}
-      <div className="center">
-        <p className="mb-2 text-xl font-bold capitalize">quick links</p>
-        <ul className="flex gap-3">
-          <li>Go top</li>
-          <li>link 0</li>
-          <li>link 1</li>
-          <li>link 2</li>
-          <li>link 3</li>
-        </ul>
-      </div>
-
-      {/* footer right content */}
-      <div className="right">
-        <p className="mb-2 text-xl font-bold capitalize">
+      <div>
+        <p className="mb-2 text-lg font-medium capitalize md:mb-4 text-primary-300">
           Let's meet our contributors
         </p>
         <div className="flex">
-          {contributors.map((person, index) => (
-            <Link key={index} to={person.portfolio} className='px-1'>
+          {CONTRIBUTORS.map(({ name, portfolio, image }) => (
+            <Link key={name} to={portfolio} className="px-1">
               <img
                 className="object-cover overflow-hidden w-8 h-8 rounded-full"
-                src={person.image}
-                alt={person.name}
+                src={image}
+                alt={name}
               />
             </Link>
           ))}
