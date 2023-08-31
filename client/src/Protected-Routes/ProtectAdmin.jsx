@@ -3,6 +3,7 @@ import { useAuth } from '../contexts/auth-context';
 import useUser from '../hooks/use-user';
 import { CgSpinner } from 'react-icons/cg';
 import { Navigate } from 'react-router-dom';
+
 const ProtectAdmin = ({ children }) => {
   const { user, isLoading } = useAuth();
   const { user: admin, userLoading } = useUser();

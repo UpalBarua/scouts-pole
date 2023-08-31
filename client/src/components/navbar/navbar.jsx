@@ -3,6 +3,7 @@ import { MdOutlineCreate, MdHistory, MdOutlineHome } from 'react-icons/md';
 import MobileMenu from './mobile-menu';
 import LogoutButton from '../logout-button';
 import useUser from '../../hooks/use-user';
+import { useAuth } from '../../contexts/auth-context';
 
 const MENU_OPTIONS = [
   {
@@ -23,7 +24,7 @@ const MENU_OPTIONS = [
 ];
 
 const Navbar = () => {
-  const { user } = useUser();
+  const { user } = useAuth();
 
   return (
     <header className="container flex sticky top-0 z-20 justify-between items-center py-2 max-w-7xl md:py-3 bg-primary-800">
@@ -44,7 +45,7 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
-          {user._id ? (
+          {user ? (
             <li>
               <LogoutButton />
             </li>

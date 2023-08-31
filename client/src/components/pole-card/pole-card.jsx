@@ -15,7 +15,7 @@ const PoleCard = ({ _id, options, title, description }) => {
 
   useEffect(() => {
     const prevVotedOption = options.find((option) =>
-      option.votes.includes(user._id)
+      option.votes.includes(user?._id)
     )?._id;
 
     setSelectedOption(prevVotedOption);
@@ -29,7 +29,7 @@ const PoleCard = ({ _id, options, title, description }) => {
         return toast.error('No option selected');
       }
 
-      if (!user._id) {
+      if (!user?._id) {
         return toast.error('Something went wrong');
       }
 
