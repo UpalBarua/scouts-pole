@@ -1,73 +1,80 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-const CONTRIBUTORS = [
+const footer_menu = [
   {
-    name: 'Upal Barua',
-    image:
-      'https://scontent.fcgp1-1.fna.fbcdn.net/v/t39.30808-1/356212462_274400028580061_2241878473493247835_n.jpg?stp=dst-jpg_p200x200&_nc_cat=103&ccb=1-7&_nc_sid=7206a8&_nc_eui2=AeF4GbTEBGjvG5P6SHeaTXKJmrUzO3EWz0KatTM7cRbPQgEPiGpXXFvWJTJn8etAmUaLGbzqCO2FgdPnTSY4Aoqm&_nc_ohc=Tg7ZgKwj8OAAX-sPuuT&_nc_oc=AQnERIwbzZn6_Mo2OUj7DP95RBMM9AuRYwTJzDjHjjc8mzGAspJKZBbQ-uxc8OxyBSc&_nc_ht=scontent.fcgp1-1.fna&oh=00_AfAdKqEBZVnwpkeh9EyYW3zdfrxLwyFhsBkIuXcCUeN_dw&oe=64E7B9D6',
-    portfolio: '',
+    title: 'Home',
+    link: '/',
   },
   {
-    name: 'Ashfaque Niaz',
-    image:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoPaCz5Iy9aMYF---8YCbw1va9JUMrQl4dGbm9gVeJEM_1o9bDvh4VB4UgaCDgjR--R90&usqp=CAU',
-    portfolio: '',
+    title: 'About Us',
+    link: '/',
   },
   {
-    name: 'Amran Hossen',
-    image:
-      'https://scontent.fcgp1-1.fna.fbcdn.net/v/t39.30808-6/242016078_937981900129233_7300859466883836325_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeH49jkGx_0bUsnwyGBN4Bt56T8bilxM3ZbpPxuKXEzdlilEXe-zG2M1-8Hs57kP0bOVPWEkbjEJxmjL6McIhkkJ&_nc_ohc=vQ77SuP1KZYAX8vcu9O&_nc_zt=23&_nc_ht=scontent.fcgp1-1.fna&oh=00_AfCWh58Hu3h4XnS1UE8VBvh2D2-KpNC8gms8WTmjU2odVQ&oe=64E714B7',
-    portfolio: '',
+    title: 'Our Team',
+    link: '/',
   },
   {
-    name: 'Tanvir evan',
-    image:
-      'https://scontent.fcgp1-1.fna.fbcdn.net/v/t39.30808-6/311044883_1636962126699651_853105400426640729_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeG7VzX1leB_6SMt2U70wQo0FaJNK7jgN2IVok0ruOA3Yhsq3CJ9hmDbpUQspkj5Cyz7NFZE_tyZgF7gbcMoSHrG&_nc_ohc=ZpiBwhXscj4AX-q1md6&_nc_zt=23&_nc_ht=scontent.fcgp1-1.fna&oh=00_AfBFyG7fUli77RPf5VZ-JkzFWrgE-SFjLXRK3sNnz5hHCg&oe=64E88A12',
-    portfolio: '',
-  },
-  {
-    name: 'Atif Ador',
-    image:
-      'https://scontent.fcgp4-1.fna.fbcdn.net/v/t39.30808-6/365268435_943090976762288_8921103280587411513_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGhhea4jfVGIlVLAlSIR1mQWQ4516vJCc9ZDjnXq8kJzwLt5QyrfxOZzEhkBK2UGXddFpKlRmuC6pzWb0_Mld2B&_nc_ohc=MmZ0h8PgIGEAX8-OYOl&_nc_zt=23&_nc_ht=scontent.fcgp4-1.fna&oh=00_AfCK4_Zgd1bP6VAfqBaGdMtKn_xq_HDMF-svPHShwCqmaA&oe=64E8367C',
-    portfolio: '',
-  },
-  {
-    name: 'Imran Hasan',
-    image:
-      'https://scontent.fcgp4-1.fna.fbcdn.net/v/t39.30808-1/362605870_209021395463846_4785272798097789709_n.jpg?stp=c0.20.1765.1765a_dst-jpg_s160x160&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_eui2=AeGHvJTJ27cHfvfhPsneSe5cdpgTy3yGN2J2mBPLfIY3Yh1xKAwNeqymA9GnJr7CJq7h8xWC0-FR1EdwyYiBxE80&_nc_ohc=vem6he7UZ3wAX-accKM&_nc_ht=scontent.fcgp4-1.fna&oh=00_AfDaJH5ru94JXMpaRwRb1jNqFPlx6OO7R3sQn_OtWAVUCg&oe=64E8CF09',
-    portfolio: '',
+    title: 'History',
+    link: '/history',
   },
 ];
 
 const Footer = () => {
   return (
-    <footer className="container flex flex-col gap-4 justify-between py-5 max-w-7xl sm:flex-row sm:pt-8 md:pt-12">
-      <div className="w-56">
+    <footer className="container flex justify-center items-center pt-24 pb-20 mx-auto text-center">
+      <div className="text-sm text-center">
         <Link to="/">
-          <h2 className="text-2xl font-bold text-white">
+          <h1 className="py-2 text-xl font-extrabold text-white shadow-sm">
             Scouts<span className="text-accent-500">pole</span>
-          </h2>
+          </h1>
         </Link>
-        <p className="text-primary-300">
-          &copy; All right reserved by team Script Scouts
-        </p>
-      </div>
-      <div>
-        <p className="mb-2 text-lg font-medium capitalize md:mb-4 text-primary-300">
-          Let's meet our contributors
-        </p>
-        <div className="flex">
-          {CONTRIBUTORS.map(({ name, portfolio, image }) => (
-            <Link key={name} to={portfolio} className="px-1">
-              <img
-                className="object-cover overflow-hidden w-8 h-8 rounded-full"
-                src={image}
-                alt={name}
-              />
-            </Link>
+        <ul className="flex justify-center">
+          {footer_menu?.map(({ title, link }, i) => (
+            <li className="list-none" key={i}>
+              <Link className="flex px-2 hover:text-blue-600" to={link}>
+                {title}
+              </Link>
+            </li>
           ))}
+        </ul>
+        <div className="flex justify-center py-3">
+          <Link to="/" className="mx-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="fill-current">
+              <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+            </svg>
+          </Link>
+          <Link to="/" className="mx-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="fill-current">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+            </svg>
+          </Link>
+          <Link to="/" className="mx-3">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              className="fill-current">
+              <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+            </svg>
+          </Link>
         </div>
+        <p>
+          Copyright © 2023 - All right reserved by Team{' '}
+          <Link to="/" className="font-bold text-green-500">
+            Script Scouts
+          </Link>
+        </p>
       </div>
     </footer>
   );

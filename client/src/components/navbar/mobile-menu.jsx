@@ -1,8 +1,7 @@
-import React from 'react';
 import { Menu, Transition } from '@headlessui/react';
-import { NavLink } from 'react-router-dom';
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { BiMenu } from 'react-icons/bi';
+import { NavLink } from 'react-router-dom';
 import LogoutButton from '../logout-button';
 
 const MobileMenu = ({ menuOptions }) => {

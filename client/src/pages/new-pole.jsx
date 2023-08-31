@@ -1,13 +1,12 @@
-import { Fragment, useState } from 'react';
-import { get, useForm } from 'react-hook-form';
-import axios from '../api/axios';
-import OptionField from '../components/new-pole-form/option-filed';
-import uploadImage from '../utilities/uploadImage';
-import { BiImageAdd, BiLoaderAlt } from 'react-icons/bi';
-import { IoMdClose } from 'react-icons/io';
 import clsx from 'clsx';
-import Button from '../components/ui/button';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { BiImageAdd } from 'react-icons/bi';
 import { CgSpinner } from 'react-icons/cg';
+import { IoMdClose } from 'react-icons/io';
+import axios from '../api/axios';
+import Button from '../components/ui/button';
+import uploadImage from '../utilities/uploadImage';
 
 const NewPole = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);

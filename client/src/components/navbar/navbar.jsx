@@ -1,9 +1,9 @@
+import { MdHistory, MdOutlineCreate, MdOutlineHome } from 'react-icons/md';
 import { Link, NavLink } from 'react-router-dom';
-import { MdOutlineCreate, MdHistory, MdOutlineHome } from 'react-icons/md';
-import MobileMenu from './mobile-menu';
-import LogoutButton from '../logout-button';
 import useUser from '../../hooks/use-user';
 import { useAuth } from '../../contexts/auth-context';
+import LogoutButton from '../logout-button';
+import MobileMenu from './mobile-menu';
 
 const MENU_OPTIONS = [
   {
