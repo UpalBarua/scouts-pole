@@ -1,23 +1,23 @@
-import { Link, NavLink } from 'react-router-dom';
-import { MdOutlineCreate, MdHistory, MdOutlineHome } from 'react-icons/md';
-import MobileMenu from './mobile-menu';
-import LogoutButton from '../logout-button';
+import { MdHistory, MdOutlineCreate, MdOutlineHome } from "react-icons/md";
+import { Link, NavLink } from "react-router-dom";
 import useUser from '../../hooks/use-user';
+import LogoutButton from "../logout-button";
+import MobileMenu from "./mobile-menu";
 
 const MENU_OPTIONS = [
   {
-    title: 'Home',
-    link: '/',
+    title: "Home",
+    link: "/",
     Icon: <MdOutlineHome className="text-xl md:text-2xl" />,
   },
   {
-    title: 'History',
-    link: '/history',
+    title: "History",
+    link: "/history",
     Icon: <MdHistory className="text-xl md:text-2xl" />,
   },
   {
-    title: 'New Pole',
-    link: '/new-pole',
+    title: "New Pole",
+    link: "/new-pole",
     Icon: <MdOutlineCreate className="text-xl md:text-2xl" />,
   },
 ];
@@ -38,7 +38,8 @@ const Navbar = () => {
             <li key={link}>
               <NavLink
                 className="flex gap-1 items-center px-4 py-2 rounded-lg transition-colors text md:text-lg hover:bg-primary-700"
-                to={link}>
+                to={link}
+              >
                 {Icon}
                 {title}
               </NavLink>

@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+
 import { RadioGroup } from '@headlessui/react';
-import PoleOption from './pole-option';
-import axios from '../../api/axios';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { CgSpinner } from 'react-icons/cg';
-import Button from '../ui/button';
+import axios from '../../api/axios';
 import useUser from '../../hooks/use-user';
+import Button from '../ui/button';
+import PoleOption from './pole-option';
 
 const PoleCard = ({ _id, options, title, description }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,8 +58,8 @@ const PoleCard = ({ _id, options, title, description }) => {
         value={selectedOption}
         onChange={setSelectedOption}
         className="space-y-3">
-        {options?.map((option) => (
-          <PoleOption key={option._id} {...option} />
+        {options?.map((option,index) => (
+          <PoleOption key={index} {...option} />
         ))}
       </RadioGroup>
       <div className="flex gap-3 justify-end items-center pt-4">

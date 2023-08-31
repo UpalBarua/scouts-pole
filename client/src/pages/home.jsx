@@ -14,7 +14,7 @@ const HomePage = () => {
         {polesLoading ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
             <CgSpinner className="text-2xl animate-spin" />
-            <p>loading poles...</p>
+            <p>Loading poles...</p>
           </div>
         ) : polesError ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
