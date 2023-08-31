@@ -7,14 +7,11 @@ const HomePage = () => {
   const [poles, setPoles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
   const { user } = useUser();
-
   useEffect(() => {
     const fetchPoles = async () => {
       try {
         setIsLoading(true);
-
         const { data } = await axios.get('/pole');
         setPoles(data);
         setIsError(false);
@@ -36,7 +33,7 @@ const HomePage = () => {
         {isLoading ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
             <CgSpinner className="text-2xl animate-spin" />
-            <p>loading poles...</p>
+            <p>Loading poles...</p>
           </div>
         ) : isError ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">

@@ -21,7 +21,6 @@ const AuthPage = () => {
       const { user } = await signInWithPopup(auth, googleAuth);
       console.log(user);
       await createUser(user?.displayName, user?.email);
-
       toast.success('Logged in successfully');
       navigate('/');
     } catch (error) {
