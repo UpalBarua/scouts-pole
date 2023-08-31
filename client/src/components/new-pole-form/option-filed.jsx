@@ -13,7 +13,7 @@ const OptionField = ({ register, index, getValues, setValue }) => {
       </label>
       <div>
         <input
-          className="px-4 py-2 w-full rounded-lg border border-purple-400 transition-colors duration-300 ease-in-out focus:ring focus:ring-blue-300 focus:outline-none"
+          className="w-full px-4 py-2 transition-colors duration-300 ease-in-out border border-purple-400 rounded-lg focus:ring focus:ring-blue-300 focus:outline-none"
           type="text"
           {...register(`options.${index}`, {
             required: "Option is required",

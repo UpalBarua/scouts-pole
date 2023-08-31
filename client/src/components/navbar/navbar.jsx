@@ -33,7 +33,7 @@ const Navbar = () => {
         </h1>
       </Link>
       <nav>
-        <ul className="hidden gap-1 items-center pt-2 md:gap-2 sm:flex">
+        <ul className="items-center hidden gap-1 pt-2 md:gap-2 sm:flex">
           {MENU_OPTIONS.map(({ title, link, Icon }) => (
             <li key={link}>
               <NavLink
