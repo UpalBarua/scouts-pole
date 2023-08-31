@@ -9,18 +9,18 @@ import Button from '../ui/button';
 import PoleOption from './pole-option';
 
 const PoleCard = ({ _id, options, title, description }) => {
-  const { user } = useUser();
+  const { userData } = useUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const prevVotedOption = options.find((option) =>
-      option.votes.includes(user?._id)
+      option.votes.includes(userData?._id)
     )?._id;
 
     setSelectedOption(prevVotedOption);
-  }, [options, user, setSelectedOption]);
+  }, [options, userData, setSelectedOption]);
 
   const handleSubmit = async () => {
     try {
@@ -30,13 +30,15 @@ const PoleCard = ({ _id, options, title, description }) => {
         return toast.error('No option selected');
       }
 
-      if (!user?._id) {
+      if (!userData?._id) {
+        console.log(userData
+        );
         return toast.error('Something went wrong');
       }
 
       await axios
         .patch(`/pole/${_id}`, {
-          userId: user?._id,
+          userId: userData?._id,
           optionId: selectedOption,
         })
         .then((response) => {
@@ -63,7 +65,7 @@ const PoleCard = ({ _id, options, title, description }) => {
     <div className="flex flex-col p-4 space-y-2 w-full max-w-full rounded-lg shadow sm:p-6 bg-primary-900">
       {submitted ? (
         <ResultChart
-          voter={user}
+          voter={userData}
           poleId={_id}
           handleVoteAgain={handleVoteAgain}
         />

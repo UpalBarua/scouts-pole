@@ -9,6 +9,7 @@ const createUser = async (name, email) => {
     });
   } catch (error) {
     if (error.response.status !== 409) {
+      
       console.error(error);
       throw error;
     }

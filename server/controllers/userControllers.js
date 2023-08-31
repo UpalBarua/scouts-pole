@@ -5,10 +5,11 @@ const usersCollection = mongoClient.db('scouts-pole').collection('users');
 export const getUsers = async (req, res) => {
   try {
     const { email } = req.params;
-
+// console.log(email);
     const foundUser = await usersCollection.findOne({ email });
 
     if (foundUser) {
+      // console.log(foundUser);
       return res.status(200).json(foundUser);
     }
 
@@ -30,6 +31,7 @@ export const createUser = async (req, res) => {
     const existingUser = await usersCollection.findOne({ email });
 
     if (existingUser) {
+      console.log("existing user");
       return res.status(409).json({ message: 'User already exists' });
     }
 
