@@ -7,6 +7,11 @@ import useUser from '../../hooks/use-user';
 import ResultChart from '../result-chart';
 import Button from '../ui/button';
 import PoleOption from './pole-option';
+import { Menu } from '@headlessui/react';
+import { Transition } from '@headlessui/react';
+import { BiMenu } from 'react-icons/bi';
+import { Fragment } from 'react';
+import PoleMenu from './pole-menu';
 
 const PoleCard = ({ _id, options, title, description }) => {
   const { userData } = useUser();
@@ -31,8 +36,7 @@ const PoleCard = ({ _id, options, title, description }) => {
       }
 
       if (!userData?._id) {
-        console.log(userData
-        );
+        console.log(userData);
         return toast.error('Something went wrong');
       }
 
@@ -84,6 +88,7 @@ const PoleCard = ({ _id, options, title, description }) => {
             ))}
           </RadioGroup>
           <div className="flex gap-3 justify-end items-center pt-4">
+            <PoleMenu poleId={_id} />
             <Button variant="secondary">Change Vote</Button>
             <Button
               variant="primary"

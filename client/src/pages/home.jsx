@@ -1,7 +1,8 @@
 import { CgSpinner } from 'react-icons/cg';
 import PoleCard from '../components/pole-card/pole-card';
 import usePoles from '../hooks/use-poles';
-
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
+import ConfirmationModal from '../components/ui/confirmation-modal';
 
 const HomePage = () => {
   const { poles, polesLoading, polesError } = usePoles();
@@ -25,7 +26,6 @@ const HomePage = () => {
           poles?.map((pole) => <PoleCard key={pole._id} {...pole} />)
         )}
       </div>
-
     </main>
   );
 };

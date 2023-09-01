@@ -22,10 +22,13 @@ const PoleOption = ({ _id, option, optionImage, votes }) => {
       {({ checked }) => (
         <>
           <div className="flex flex-col space-y-2 w-full">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center w-full">
               <RadioGroup.Label
                 as="p"
-                className={clsx('text-lg ps-1', checked && 'text-white')}>
+                className={clsx(
+                  'text-lg ps-1 h-auto w-64',
+                  checked && 'text-white'
+                )}>
                 {option}
               </RadioGroup.Label>
               {checked && (

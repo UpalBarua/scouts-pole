@@ -9,14 +9,14 @@ export const getPoles = async (req, res) => {
     const poles = await polesCollection.find({}).toArray();
     res.status(200).json(poles);
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
 // Get a pole by its ID
 export const getPoleById = async (req, res) => {
   try {
-    const {poleId} = req.params;
+    const { poleId } = req.params;
     const query = { _id: new ObjectId(poleId) };
 
     const pole = await polesCollection.findOne(query);
@@ -27,7 +27,7 @@ export const getPoleById = async (req, res) => {
       return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -61,14 +61,14 @@ export const createPole = async (req, res) => {
 
     res.status(400).json({ message: 'Failed to create pole' });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
 // Update a pole by its ID
 export const updatePole = async (req, res) => {
   try {
-    const {poleId} = req.params;
+    const { poleId } = req.params;
     const updatedPole = req.body;
 
     const query = { _id: new ObjectId(poleId) };
@@ -82,25 +82,26 @@ export const updatePole = async (req, res) => {
       return res.status(404).json({ message: 'Pole not found' });
     }
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
 // Delete a pole by its ID
 export const deletePole = async (req, res) => {
   try {
-    const {poleId} = req.params;
-    const query = { _id: new ObjectId(poleId) };
+    const { poleId } = req.params;
 
-    const result = await polesCollection.deleteOne(query);
+    const result = await polesCollection.deleteOne({
+      _id: new ObjectId(poleId),
+    });
 
     if (result.deletedCount > 0) {
       return res.status(200).json({ message: 'Pole deleted successfully' });
-    } else {
-      return res.status(404).json({ message: 'Pole not found' });
     }
+
+    res.status(404).json({ message: 'Pole not found' });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -139,6 +140,6 @@ export const updatePoleVotes = async (req, res) => {
 
     res.status(200).json(result);
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
