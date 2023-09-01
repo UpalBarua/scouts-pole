@@ -12,6 +12,7 @@ const usePolls = () => {
         const { data } = await axios.get('/polls');
         setPolls(data);
         setPollsError(false);
+        console.log(data);
       } catch (error) {
         console.error(error);
         setPollsError(true);

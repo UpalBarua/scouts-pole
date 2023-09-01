@@ -43,7 +43,7 @@ const contributors = [
   {
     title: 'Tajul Islam Tanvir',
     profile: 'https://avatars.githubusercontent.com/u/121679880?v=4',
-    path: 'https://github.com/niaz-abir',
+    path: 'https://github.com/MD-TANVIR7462',
   },
   {
     title: 'Amran Hossen',

@@ -8,6 +8,7 @@ export const getPolls = async (req, res, next) => {
   try {
     const polls = await pollsCollection.find({}).toArray();
     res.status(200).json(polls);
+  
   } catch (error) {
     next(error);
   }
