@@ -6,8 +6,9 @@ import RouteGuard from '../components/route-guard';
 import HistoryPage from '../pages/history';
 import AuthPage from '../pages/auth';
 import HomePage from '../pages/home';
-import NewPolePage from '../pages/new-pole';
+import NewPollPage from '../pages/new-poll';
 import ErrorPage from '../pages/error';
+import EditPollPage from '../pages/edit-poll';
 
 const router = createBrowserRouter([
   {
@@ -31,10 +32,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/new-pole',
+        path: '/new-poll',
         element: (
           <RouteGuard isAdminRoute>
-            <NewPolePage />
+            <NewPollPage />
+          </RouteGuard>
+        ),
+      },
+      {
+        path: '/edit-poll/:pollId',
+        element: (
+          <RouteGuard isAdminRoute>
+            <EditPollPage />
           </RouteGuard>
         ),
       },

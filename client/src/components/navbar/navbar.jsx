@@ -16,8 +16,8 @@ const MENU_OPTIONS = [
     Icon: <MdHistory className="text-xl md:text-2xl" />,
   },
   {
-    title: 'New Pole',
-    link: '/new-pole',
+    title: 'New Poll',
+    link: '/new-poll',
     Icon: <MdOutlineCreate className="text-xl md:text-2xl" />,
   },
 ];
@@ -29,7 +29,7 @@ const Navbar = () => {
     <header className="container flex sticky top-0 z-20 justify-between items-center py-2 max-w-7xl md:py-3 bg-primary-800">
       <Link to="/">
         <h1 className="text-2xl font-bold text-white">
-          Scouts<span className="text-accent-500">pole</span>
+          Scouts<span className="text-accent-500">poll</span>
         </h1>
       </Link>
       <nav>

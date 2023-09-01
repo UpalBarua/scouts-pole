@@ -3,20 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import Button from './ui/button';
 
-const ResultChart = ({ poleId, handleVoteAgain }) => {
-  const [poleData, setPoleData] = useState([]) || [];
+const ResultChart = ({ pollId, handleVoteAgain }) => {
+  const [pollData, setPollData] = useState([]) || [];
   useEffect(() => {
     axios
-      .get(`/pole/${poleId}`)
+      .get(`/polls/${pollId}`)
       .then((response) => {
-        setPoleData(response.data.options);
+        setPollData(response.data.options);
       })
       .catch((error) => {
-        console.error('Error fetching pole data:', error);
+        console.error('Error fetching poll data:', error);
       });
-  }, [poleId]);
+  }, [pollId]);
 
-  const data = poleData.map((optionData) => ({
+  const data = pollData.map((optionData) => ({
     name: optionData.option,
     image: optionData.optionImage,
     value: optionData.votes.length,
@@ -117,12 +117,12 @@ const ResultChart = ({ poleId, handleVoteAgain }) => {
           <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </div>
-      <button
+      {/* <button
         variant="primary"
         onClick={() => handleVoteAgain(true)}
         className="px-4 py-2 my-2 text-white bg-blue-500 rounded hover:bg-blue-700">
         Vote again
-      </button>
+      </button> */}
     </div>
   );
 };

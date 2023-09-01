@@ -7,7 +7,7 @@ import mongoClient from './db/mongoClient.js';
 
 // routes
 import userRoutes from './routes/user.js';
-import poleRoutes from './routes/poles.js';
+import pollRoutes from './routes/polls.js';
 import catchError from './middleware/errorMiddleware.js';
 
 dotenv.config();
@@ -21,8 +21,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use('/api/user', userRoutes);
-app.use('/api/pole', poleRoutes);
-// app.use('/api/pole', poleHistoryRoutes);
+app.use('/api/polls', pollRoutes);
 
 app.use(catchError);
 

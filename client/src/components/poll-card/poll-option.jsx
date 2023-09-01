@@ -4,7 +4,7 @@ import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { twMerge } from 'tailwind-merge';
 
-const PoleOption = ({ _id, option, optionImage, votes }) => {
+const PollOption = ({ _id, option, optionImage, votes }) => {
   return (
     <RadioGroup.Option
       value={_id}
@@ -49,4 +49,4 @@ const PoleOption = ({ _id, option, optionImage, votes }) => {
   );
 };
 
-export default PoleOption;
+export default PollOption;

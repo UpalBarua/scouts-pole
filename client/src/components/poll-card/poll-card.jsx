@@ -6,18 +6,18 @@ import axios from '../../api/axios';
 import useUser from '../../hooks/use-user';
 import ResultChart from '../result-chart';
 import Button from '../ui/button';
-import PoleOption from './pole-option';
+import PollOption from './poll-option';
 import { Menu } from '@headlessui/react';
 import { Transition } from '@headlessui/react';
 import { BiMenu } from 'react-icons/bi';
 import { Fragment } from 'react';
-import PoleMenu from './pole-menu';
+import PollMenu from './pole-menu';
 
-const PoleCard = ({ _id, options, title, description }) => {
+const PollCard = ({ _id, options, title, description }) => {
   const { userData } = useUser();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [displayResults, setDisplayResults] = useState(false);
 
   useEffect(() => {
     const prevVotedOption = options.find((option) =>
@@ -40,17 +40,10 @@ const PoleCard = ({ _id, options, title, description }) => {
         return toast.error('Something went wrong');
       }
 
-      await axios
-        .patch(`/pole/${_id}`, {
-          userId: userData?._id,
-          optionId: selectedOption,
-        })
-        .then((response) => {
-          if (response.status === 200) {
-            setSubmitted(true);
-          }
-        });
-      console.log(submitted);
+      await axios.patch(`/polls/${_id}`, {
+        userId: userData?._id,
+        optionId: selectedOption,
+      });
 
       toast.success('Vote submitted');
     } catch (error) {
@@ -61,20 +54,12 @@ const PoleCard = ({ _id, options, title, description }) => {
     }
   };
 
-  const handleVoteAgain = () => {
-    setSubmitted(false);
-  };
-
   return (
     <div className="flex flex-col p-4 space-y-2 w-full max-w-full rounded-lg shadow sm:p-6 bg-primary-900">
-      {submitted ? (
-        <ResultChart
-          voter={userData}
-          poleId={_id}
-          handleVoteAgain={handleVoteAgain}
-        />
+      {displayResults ? (
+        <ResultChart voter={userData} pollId={_id} />
       ) : (
-        <div>
+        <>
           <h3 className="text-lg font-bold text-white sm:text-xl md:text-2xl">
             {title}
           </h3>
@@ -84,30 +69,36 @@ const PoleCard = ({ _id, options, title, description }) => {
             onChange={setSelectedOption}
             className="space-y-3">
             {options?.map((option) => (
-              <PoleOption key={option._id} {...option} />
+              <PollOption key={option._id} {...option} />
             ))}
           </RadioGroup>
-          <div className="flex gap-3 justify-end items-center pt-4">
-            <PoleMenu poleId={_id} />
-            <Button variant="secondary">Change Vote</Button>
-            <Button
-              variant="primary"
-              disabled={isSubmitting}
-              onClick={handleSubmit}>
-              {isSubmitting ? (
-                <>
-                  <CgSpinner className="text-xl animate-spin" />
-                  <span>Submitting</span>
-                </>
-              ) : (
-                <span>Submit Vote</span>
-              )}
-            </Button>
-          </div>
-        </div>
+        </>
       )}
+      <div className="flex gap-3 justify-end items-center pt-4">
+        <PollMenu pollId={_id} />
+        <Button
+          variant="secondary"
+          onClick={() =>
+            setDisplayResults((prevDisplayResults) => !prevDisplayResults)
+          }>
+          Show Results
+        </Button>
+        <Button
+          variant="primary"
+          disabled={isSubmitting}
+          onClick={handleSubmit}>
+          {isSubmitting ? (
+            <>
+              <CgSpinner className="text-xl animate-spin" />
+              <span>Submitting</span>
+            </>
+          ) : (
+            <span>Submit Vote</span>
+          )}
+        </Button>
+      </div>
     </div>
   );
 };
 
-export default PoleCard;
+export default PollCard;

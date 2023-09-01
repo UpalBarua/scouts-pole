@@ -5,14 +5,16 @@ import { BiMenu } from 'react-icons/bi';
 import ConfirmationModal from '../ui/confirmation-modal';
 import { toast } from 'react-hot-toast';
 import axios from '../../api/axios';
+import { Link } from 'react-router-dom';
 
-const PoleMenu = ({ poleId }) => {
+const PollMenu = ({ pollId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDelete = async (poleId) => {
+  const handleDelete = async (pollId) => {
     try {
-      await axios.delete(`/pole/${poleId}`);
-      toast.success('Pole deleted');
+      await axios.delete(`/polls/${pollId}`);
+      window.location.reload();
+      toast.success('Poll deleted');
     } catch (error) {
       console.error(error);
       toast.error('Something went wrong');
@@ -39,24 +41,24 @@ const PoleMenu = ({ poleId }) => {
             as={'button'}
             onClick={() => setIsModalOpen(true)}
             className="block px-3 py-2 rounded-md hover:bg-primary-700 hover:text-white">
-            Delete Pole
+            Delete Poll
           </Menu.Item>
           <Menu.Item
-            as={'button'}
-            onClick={() => console.log('editing ', _id)}
+            as={Link}
+            to={`/edit-poll/${pollId}`}
             className="block px-3 py-2 rounded-md hover:bg-primary-700 hover:text-white">
-            Edit Pole
+            Edit Poll
           </Menu.Item>
         </Menu.Items>
       </Transition>
       <ConfirmationModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        title={'Delete this pole'}
-        description={"this pole will be deleted and you can't recover it"}
-        onConfirm={() => handleDelete(poleId)}
+        title={'Delete this poll'}
+        description={"this poll will be deleted and you can't recover it"}
+        onConfirm={() => handleDelete(pollId)}
       />
     </Menu>
   );
 };
-export default PoleMenu;
+export default PollMenu;
