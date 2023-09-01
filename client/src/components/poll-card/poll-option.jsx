@@ -4,7 +4,7 @@ import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
 import { twMerge } from 'tailwind-merge';
 
-const PoleOption = ({ _id, option, optionImage, votes }) => {
+const PollOption = ({ _id, option, optionImage, votes }) => {
   return (
     <RadioGroup.Option
       value={_id}
@@ -22,10 +22,13 @@ const PoleOption = ({ _id, option, optionImage, votes }) => {
       {({ checked }) => (
         <>
           <div className="flex flex-col space-y-2 w-full">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center w-full">
               <RadioGroup.Label
                 as="p"
-                className={clsx('text-lg ps-1', checked && 'text-white')}>
+                className={clsx(
+                  'text-lg ps-1 h-auto w-64',
+                  checked && 'text-white'
+                )}>
                 {option}
               </RadioGroup.Label>
               {checked && (
@@ -46,4 +49,4 @@ const PoleOption = ({ _id, option, optionImage, votes }) => {
   );
 };
 
-export default PoleOption;
+export default PollOption;

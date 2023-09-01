@@ -7,11 +7,12 @@ import { IoMdClose } from 'react-icons/io';
 import axios from '../api/axios';
 import Button from '../components/ui/button';
 import uploadImage from '../utilities/uploadImage';
+import toast from 'react-hot-toast';
 
-const NewPole = () => {
+const NewPoll = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
   const [optionImages, setOptionImages] = useState([]);
-  const [isPoleSubmitting, setIsPoleSubmitting] = useState(false);
+  const [isPollSubmitting, setIsPollSubmitting] = useState(false);
 
   const {
     register,
@@ -22,7 +23,7 @@ const NewPole = () => {
 
   const onSubmit = async ({ title, description, options, expiration }) => {
     try {
-      setIsPoleSubmitting(true);
+      setIsPollSubmitting(true);
 
       const optionImageUrls = await Promise.all(
         optionImages?.map(async (image) => await uploadImage(image))
@@ -35,7 +36,7 @@ const NewPole = () => {
         };
       });
 
-      const newPole = {
+      const newPoll = {
         title,
         description,
         options: optionsArray,
@@ -44,15 +45,16 @@ const NewPole = () => {
         isActive: true,
       };
 
-      await axios.post('/pole', newPole);
+      await axios.post('/polls', newPoll);
 
+      toast.success('Poll added');
       setOptionImages([]);
       setOptionInputFields([null]);
       reset();
     } catch (error) {
       console.log(error);
     } finally {
-      setIsPoleSubmitting(false);
+      setIsPollSubmitting(false);
     }
   };
 
@@ -76,7 +78,7 @@ const NewPole = () => {
   return (
     <main className="container py-5 max-w-7xl">
       <h2 className="text-2xl font-bold text-center text-white md:text-3xl md:pb-8">
-        Add a new pole
+        Add a new poll
       </h2>
       <form
         className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
@@ -213,17 +215,20 @@ const NewPole = () => {
           )}
         </fieldset>
         <div className="flex gap-2 justify-end items-center pt-4">
-          <Button onClick={addNewOptionInputField} variant="secondary">
+          <Button
+            onClick={addNewOptionInputField}
+            variant="secondary"
+            type="button">
             Add Input
           </Button>
-          <Button disabled={isPoleSubmitting} type="submit" variant="primary">
-            {isPoleSubmitting ? (
+          <Button disabled={isPollSubmitting} type="submit" variant="primary">
+            {isPollSubmitting ? (
               <>
                 <CgSpinner className="text-2xl animate-spin" />
                 <span>Submitting</span>
               </>
             ) : (
-              <span>Submit Pole</span>
+              <span>Submit Poll</span>
             )}
           </Button>
         </div>
@@ -232,4 +237,4 @@ const NewPole = () => {
   );
 };
 
-export default NewPole;
+export default NewPoll;

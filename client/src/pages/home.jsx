@@ -1,31 +1,33 @@
 import { CgSpinner } from 'react-icons/cg';
-import PoleCard from '../components/pole-card/pole-card';
-import usePoles from '../hooks/use-poles';
-
+import PollCard from '../components/poll-card/poll-card';
+import usePolls from '../hooks/use-polls';
+import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
+import ConfirmationModal from '../components/ui/confirmation-modal';
 
 const HomePage = () => {
-  const { poles, polesLoading, polesError } = usePoles();
+  const { polls, pollsLoading, pollsError } = usePolls();
+
+  console.log(polls);
 
   return (
     <main className="container grid py-5 md:py-10">
       <h2 className="pb-5 text-2xl font-bold text-center text-white md:text-3xl md:pb-8">
-        Active Poles
+        Active Polls
       </h2>
       <div className="mx-auto space-y-4 max-w-2xl">
-        {polesLoading ? (
+        {pollsLoading ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
             <CgSpinner className="text-2xl animate-spin" />
-            <p>Loading poles...</p>
+            <p>Loading polls...</p>
           </div>
-        ) : polesError ? (
+        ) : pollsError ? (
           <div className="flex gap-2 items-center h-[40vh] text-xl font-medium">
-            <p>failed to load poles</p>
+            <p>failed to load polls</p>
           </div>
         ) : (
-          poles?.map((pole) => <PoleCard key={pole._id} {...pole} />)
+          polls?.map((poll) => <PollCard key={poll._id} {...poll} />)
         )}
       </div>
-
     </main>
   );
 };

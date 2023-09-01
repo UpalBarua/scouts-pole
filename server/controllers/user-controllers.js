@@ -1,11 +1,11 @@
 import mongoClient from '../db/mongoClient.js';
 
-const usersCollection = mongoClient.db('scouts-pole').collection('users');
+const usersCollection = mongoClient.db('scouts-poll').collection('users');
 
 export const getUsers = async (req, res) => {
   try {
     const { email } = req.params;
-// console.log(email);
+    // console.log(email);
     const foundUser = await usersCollection.findOne({ email });
 
     if (foundUser) {
@@ -15,7 +15,7 @@ export const getUsers = async (req, res) => {
 
     res.status(404).json({ message: 'User not found' });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -31,14 +31,14 @@ export const createUser = async (req, res) => {
     const existingUser = await usersCollection.findOne({ email });
 
     if (existingUser) {
-      console.log("existing user");
+      console.log('existing user');
       return res.status(409).json({ message: 'User already exists' });
     }
 
     const newUser = await usersCollection.insertOne({ email, name });
     res.status(201).json({ message: 'User created successfully', newUser });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -65,7 +65,7 @@ export const updateUser = async (req, res) => {
 
     res.status(404).json({ message: 'User not found' });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
@@ -81,6 +81,6 @@ export const deleteUser = async (req, res) => {
 
     res.status(404).json({ message: 'User not found' });
   } catch (error) {
-    next(error)
+    next(error);
   }
 };

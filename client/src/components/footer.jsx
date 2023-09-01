@@ -1,54 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 const footer_menu = [
   {
-    title: "Home",
-    link: "/",
+    title: 'Home',
+    link: '/',
   },
   {
-    title: "About Us",
-    link: "/",
+    title: 'About Us',
+    link: '/',
   },
   {
-    title: "History",
-    link: "/history",
+    title: 'History',
+    link: '/history',
   },
   {
-    title: "Contact Us",
-    link: "/",
+    title: 'Contact Us',
+    link: '/',
   },
 ];
 
 const contributors = [
   {
-    title: "Imran Hasan Ovi",
-    profile: "https://avatars.githubusercontent.com/u/121815437?v=4",
-    path: "https://github.com/GitByImran",
+    title: 'Imran Hasan Ovi',
+    profile: 'https://avatars.githubusercontent.com/u/121815437?v=4',
+    path: 'https://github.com/GitByImran',
   },
   {
-    title: "Upal Barua",
-    profile: "https://avatars.githubusercontent.com/u/56833544?v=4",
-    path: "https://github.com/UpalBarua",
+    title: 'Upal Barua',
+    profile: 'https://avatars.githubusercontent.com/u/56833544?v=4',
+    path: 'https://github.com/UpalBarua',
   },
   {
-    title: "Ador",
-    profile: "https://avatars.githubusercontent.com/u/84873174?v=4",
-    path: "https://github.com/jamanador",
+    title: 'Ador',
+    profile: 'https://avatars.githubusercontent.com/u/84873174?v=4',
+    path: 'https://github.com/jamanador',
   },
   {
-    title: "Niaz Abir",
-    profile: "https://avatars.githubusercontent.com/u/103358513?v=4",
-    path: "https://github.com/niaz-abir",
+    title: 'Niaz Abir',
+    profile: 'https://avatars.githubusercontent.com/u/103358513?v=4',
+    path: 'https://github.com/niaz-abir',
   },
   {
-    title: "Tajul Islam Tanvir",
-    profile: "https://avatars.githubusercontent.com/u/121679880?v=4",
-    path: "https://github.com/niaz-abir",
+    title: 'Tajul Islam Tanvir',
+    profile: 'https://avatars.githubusercontent.com/u/121679880?v=4',
+    path: 'https://github.com/niaz-abir',
   },
   {
-    title: "Amran Hossen",
-    profile: "https://avatars.githubusercontent.com/u/105711432?v=4",
-    path: "https://github.com/AJAmran",
+    title: 'Amran Hossen',
+    profile: 'https://avatars.githubusercontent.com/u/105711432?v=4',
+    path: 'https://github.com/AJAmran',
   },
 ];
 
@@ -58,7 +58,7 @@ const Footer = () => {
       <div className="text-sm text-center">
         <Link to="/">
           <h1 className="py-2 text-xl font-extrabold text-white shadow-sm">
-            Scouts<span className="text-accent-500">pole</span>
+            Scouts<span className="text-accent-500">poll</span>
           </h1>
         </Link>
         <ul className="flex justify-center">
@@ -86,7 +86,7 @@ const Footer = () => {
           ))}
         </ul>
         <p>
-          Copyright © 2023 - All right reserved by Team{" "}
+          Copyright © 2023 - All right reserved by Team{' '}
           <Link to="/" className="font-bold text-green-500">
             Script Scouts
           </Link>

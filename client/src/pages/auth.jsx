@@ -40,7 +40,7 @@ const AuthPage = () => {
         <img className="w-48 sm:flex-1" src={authIllustration} />
         <div className="flex flex-col gap-2 items-center text-center md:gap-3 sm:flex-1 sm:items-start sm:text-start">
           <h2 className="text-2xl font-bold text-white md:text-3xl">
-            Welcome To Scouts<span className="text-accent-500">pole</span>!
+            Welcome To Scouts<span className="text-accent-500">poll</span>!
           </h2>
           <p className="w-[80%] pb-3 text-primary-200 md:text-lg">
             Sign in using your Google account and join the decision-making
