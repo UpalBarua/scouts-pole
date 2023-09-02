@@ -1,14 +1,15 @@
 import clsx from 'clsx';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { BiImageAdd } from 'react-icons/bi';
 import { CgSpinner } from 'react-icons/cg';
 import { IoMdClose } from 'react-icons/io';
+import { useParams } from 'react-router-dom';
 import axios from '../api/axios';
 import Button from '../components/ui/button';
 import uploadImage from '../utilities/uploadImage';
-import { useParams } from 'react-router-dom';
-import toast from 'react-hot-toast';
+import { errorToast, successToast } from '../utilities/toast';
 
 const EditPollPage = () => {
   const { pollId } = useParams();
@@ -44,7 +45,7 @@ const EditPollPage = () => {
         });
       } catch (error) {
         console.error(error);
-        toast.error('Something went wrong');
+        errorToast('Something went wrong');
       }
     };
 
@@ -79,7 +80,7 @@ const EditPollPage = () => {
 
       await axios.put(`/polls/${pollId}`, updatedPoll);
 
-      toast.success('Poll updated');
+      successToast('Poll updated');
       setOptionImages([]);
       setOptionInputFields([null]);
       reset();

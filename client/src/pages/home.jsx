@@ -1,6 +1,6 @@
 import PollCard from '../components/poll-card/poll-card';
-import usePolls from '../hooks/use-polls';
 import LoadingSpinner from '../components/ui/loading-spinner';
+import usePolls from '../hooks/use-polls';
 
 const HomePage = () => {
   const { polls, pollsLoading, pollsError } = usePolls('active');

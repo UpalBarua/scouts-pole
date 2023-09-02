@@ -1,12 +1,13 @@
 import { signOut } from 'firebase/auth';
 import { useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { successToast, errorToast } from '../utilities/toast';
 import { BiLogOut } from 'react-icons/bi';
 import { CgSpinner } from 'react-icons/cg';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase/firebase.config';
-import ConfirmationModal from './ui/confirmation-modal';
 import Button from './ui/button';
+import ConfirmationModal from './ui/confirmation-modal';
+import { twMerge } from 'tailwind-merge';
 
 const LogoutButton = ({ className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,12 +19,12 @@ const LogoutButton = ({ className }) => {
     try {
       setLoading(true);
       await signOut(auth);
-      toast.success('Logged out');
+      successToast('Logged out');
       navigate('/auth');
       window.location.reload();
     } catch (error) {
       console.error(error);
-      toast.error('Something went wrong');
+      errorToast('Something went wrong');
     } finally {
       setLoading(false);
     }
@@ -34,7 +35,7 @@ const LogoutButton = ({ className }) => {
       <Button
         variant="danger"
         disabled={loading}
-        className={'px-4 py-2'}
+        className={twMerge('px-4 py-2', className)}
         onClick={() => setIsModalOpen(true)}>
         {loading ? (
           <>
