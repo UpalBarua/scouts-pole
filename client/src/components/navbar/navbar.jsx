@@ -70,7 +70,7 @@ const Navbar = () => {
             </li>
           ) : null}
         </ul>
-        <MobileMenu menuOptions={MENU_OPTIONS} userRole={userData?.role} />
+        <MobileMenu menuOptions={MENU_OPTIONS} userRole={userData?.role} user={user} />
       </nav>
     </header>
   );
