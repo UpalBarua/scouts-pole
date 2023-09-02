@@ -50,7 +50,7 @@ const ConfirmationModal = ({
                     Cancel
                   </Button>
                   <Button variant="danger" onClick={onConfirm}>
-                    Delete
+                    Continue
                   </Button>
                 </div>
               </Dialog.Panel>

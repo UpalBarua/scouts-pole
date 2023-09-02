@@ -11,7 +11,8 @@ const Button = ({ variant, className, children, ...props }) => {
           {
             'bg-accent-500  border-accent-500': variant === 'primary',
             'bg-primary-700 border-primary-600': variant === 'secondary',
-            'bg-red-500 border-red-500 hover:bg-red-600': variant === 'danger',
+            'bg-red-500 border-red-500 hover:bg-red-500/90':
+              variant === 'danger',
           }
         ),
         className

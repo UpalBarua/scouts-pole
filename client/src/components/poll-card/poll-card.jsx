@@ -7,10 +7,6 @@ import useUser from '../../hooks/use-user';
 import ResultChart from '../result-chart';
 import Button from '../ui/button';
 import PollOption from './poll-option';
-import { Menu } from '@headlessui/react';
-import { Transition } from '@headlessui/react';
-import { BiMenu } from 'react-icons/bi';
-import { Fragment } from 'react';
 import PollMenu from './pole-menu';
 import CountdownTimer from './CountdownTimer';
 
@@ -62,16 +58,29 @@ const PollCard = ({
     }
   };
 
+  const handlePollActiveToggle = async (pollId) => {
+    try {
+      await axios.patch(`/polls/toggle/${pollId}`, { isActive: false });
+      toast('The poll has expired');
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
-    <div className="flex flex-col p-4 space-y-2 w-full max-w-full rounded-lg shadow sm:p-6 bg-primary-900">
+    <div className="p-4 mx-auto space-y-2 w-full rounded-lg border shadow border-primary-700 sm:p-6 bg-primary-900 md:max-w-2xl">
       {displayResults ? (
         <ResultChart voter={userData} pollId={_id} />
       ) : (
         <>
-          <h3 className="text-lg font-bold text-white sm:text-xl md:text-2xl">
-            {title}
-          </h3>
-          <p className="pb-3">{description}</p>
+          <div className="flex gap-2 justify-between items-start">
+            <h3 className="text-lg font-bold text-white sm:text-xl md:text-2xl">
+              {title}
+            </h3>
+            <PollMenu pollId={_id} isActive={isActive} />
+          </div>
+          <p className="pb-3 whitespace-normal break-all">{description}</p>
           <RadioGroup
             disabled={!isActive}
             value={selectedOption}
@@ -83,33 +92,49 @@ const PollCard = ({
           </RadioGroup>
         </>
       )}
-      <p className="pt-2 pl-1 text-sm">
-        Expires In <CountdownTimer expiresAt={expiresAt}></CountdownTimer>{' '}
-      </p>
-      <div className="flex gap-3 justify-end items-center pt-4">
-        <PollMenu pollId={_id} isActive={isActive} />
-        <Button
-          variant="secondary"
-          onClick={() =>
-            setDisplayResults((prevDisplayResults) => !prevDisplayResults)
-          }>
-          {displayResults ? 'Show Pole' : 'Show Results'}
-        </Button>
-        {isActive ? (
+      <div className="flex flex-col gap-3 justify-between pt-5 sm:items-center sm:flex-row">
+        <p>
+          <CountdownTimer
+            expiresAt={expiresAt}
+            onExpire={() => handlePollActiveToggle(_id)}
+            isActive={isActive}
+          />
+          <span> Left</span>
+        </p>
+        <div className="flex gap-2 justify-end items-center">
           <Button
-            variant="primary"
-            disabled={isSubmitting}
-            onClick={handleSubmit}>
-            {isSubmitting ? (
-              <>
-                <CgSpinner className="text-xl animate-spin" />
-                <span>Submitting</span>
-              </>
+            variant="secondary"
+            onClick={() =>
+              setDisplayResults((prevDisplayResults) => !prevDisplayResults)
+            }>
+            {displayResults ? (
+              <span>Show Poll</span>
             ) : (
-              <span>Submit Vote</span>
+              <>
+                <span className="hidden sm:inline-block">Show</span>
+                <span>Results</span>
+              </>
             )}
           </Button>
-        ) : null}
+          {isActive ? (
+            <Button
+              variant="primary"
+              disabled={isSubmitting}
+              onClick={handleSubmit}>
+              {isSubmitting ? (
+                <>
+                  <CgSpinner className="text-xl animate-spin" />
+                  <span>Submitting</span>
+                </>
+              ) : (
+                <>
+                  <span>Submit</span>
+                  <span className="hidden sm:inline-block">Vote</span>
+                </>
+              )}
+            </Button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

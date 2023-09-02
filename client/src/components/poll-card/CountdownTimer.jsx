@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 
-const CountdownTimer = ({ expiresAt }) => {
+const CountdownTimer = ({ expiresAt, onExpire, isActive }) => {
   const formatRemainingTime = (expiresAt) => {
+    if (!isActive) {
+      return `Expired on ${expiresAt}`;
+    }
+
     const currentDate = new Date();
     const expirationDate = new Date(expiresAt);
 
     const timeDiff = expirationDate - currentDate;
 
-    // if (timeDiff === 0) {
-
-    // }
+    if (timeDiff <= 0) {
+      onExpire();
+    }
 
     const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
     const hours = Math.floor(

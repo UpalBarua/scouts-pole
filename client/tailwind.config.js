@@ -6,7 +6,11 @@ export default {
     extend: {
       container: {
         center: true,
-        padding: '1.5rem',
+        padding: {
+          DEFAULT: '0.675rem',
+          sm: '1rem',
+          md: '1.5rem',
+        },
       },
       fontFamily: {
         primary: ['Roboto', 'sans-serif'],
