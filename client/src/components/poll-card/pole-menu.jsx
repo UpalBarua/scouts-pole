@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast';
 import axios from '../../api/axios';
 import { Link } from 'react-router-dom';
 
-const PollMenu = ({ pollId }) => {
+const PollMenu = ({ pollId, isActive }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = async (pollId) => {
@@ -43,12 +43,14 @@ const PollMenu = ({ pollId }) => {
             className="block px-3 py-2 rounded-md hover:bg-primary-700 hover:text-white">
             Delete Poll
           </Menu.Item>
-          <Menu.Item
-            as={Link}
-            to={`/edit-poll/${pollId}`}
-            className="block px-3 py-2 rounded-md hover:bg-primary-700 hover:text-white">
-            Edit Poll
-          </Menu.Item>
+          {isActive ? (
+            <Menu.Item
+              as={Link}
+              to={`/edit-poll/${pollId}`}
+              className="block px-3 py-2 rounded-md hover:bg-primary-700 hover:text-white">
+              Edit Poll
+            </Menu.Item>
+          ) : null}
         </Menu.Items>
       </Transition>
       <ConfirmationModal

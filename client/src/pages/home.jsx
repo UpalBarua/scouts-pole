@@ -5,9 +5,7 @@ import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 import ConfirmationModal from '../components/ui/confirmation-modal';
 
 const HomePage = () => {
-  const { polls, pollsLoading, pollsError } = usePolls();
-
-  console.log(polls);
+  const { polls, pollsLoading, pollsError } = usePolls('active');
 
   return (
     <main className="container grid py-5 md:py-10">

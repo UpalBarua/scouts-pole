@@ -5,7 +5,7 @@ import PollCard from '../components/poll-card/poll-card';
 import { useEffect, useState } from 'react';
 
 const HistoryPage = () => {
-  const { polls, pollsLoading, pollsError } = usePolls();
+  const { polls, pollsLoading, pollsError } = usePolls('inactive');
 
   const [filterString, setFilterString] = useState('');
   const [filteredPolls, setFilteredPolls] = useState({});
