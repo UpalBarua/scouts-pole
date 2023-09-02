@@ -8,7 +8,6 @@ export const getPolls = async (req, res, next) => {
   try {
     const polls = await pollsCollection.find({}).toArray();
     res.status(200).json(polls);
-  
   } catch (error) {
     next(error);
   }
@@ -155,6 +154,29 @@ export const updatePollVotes = async (req, res, next) => {
     );
 
     res.status(200).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const togglePoll = async (req, res, next) => {
+  try {
+    const {
+      params: { pollId },
+      body,
+    } = req;
+
+    const updateResult = await pollsCollection.updateOne(
+      { _id: new ObjectId(pollId) },
+      { $set: { isActive: body?.isActive } },
+      { upsert: true }
+    );
+
+    if (updateResult.modifiedCount > 0) {
+      return res.status(200).json({ message: 'Poll updated successfully' });
+    }
+
+    res.status(404).json({ message: 'Poll not found' });
   } catch (error) {
     next(error);
   }

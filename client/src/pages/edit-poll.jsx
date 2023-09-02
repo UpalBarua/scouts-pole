@@ -109,11 +109,11 @@ const EditPollPage = () => {
 
   return (
     <main className="container py-5 max-w-7xl">
-      <h2 className="text-2xl font-bold text-center text-white md:text-3xl md:pb-8">
-        Add a new poll
+      <h2 className="text-2xl font-bold text-center text-white md:text-3xl md:pb-8 font-secondary">
+        Edit Poll
       </h2>
       <form
-        className="px-3 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
+        className="px-1 mx-auto space-y-5 max-w-xl rounded-xl sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
         onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="space-y-2">
           <label className="font-medium">Title</label>
@@ -199,7 +199,7 @@ const EditPollPage = () => {
                   <BiImageAdd />
                 </label>
                 <button
-                  className="p-2 text-2xl text-white bg-red-500 rounded-lg"
+                  className="p-2 text-2xl text-white bg-red-500 rounded-lg hover:bg-red-500/90"
                   onClick={() => removeInputField(index)}>
                   <IoMdClose />
                 </button>
@@ -229,14 +229,14 @@ const EditPollPage = () => {
         </div>
         <fieldset className="space-y-2">
           <label className="font-medium">Expiration</label>
-          <div className="flex gap-3 items-center">
+          <div className="flex flex-col gap-3 items-center sm:flex-row">
             <input
               className="px-4 py-2.5 w-full rounded-lg border border-primary-600 transition-colors shadow-sm bg-primary-700 outline-none focus-visible:border-accent-500"
               type="date"
               {...register('expiration.date', {
                 required: 'Expiration date is required',
                 validate: (val) =>
-                  new Date(val) < new Date() ? 'Invalid date' : null,
+                  new Date(val) - new Date() <= 0 ? 'Invalid date' : null,
               })}
             />
             <input

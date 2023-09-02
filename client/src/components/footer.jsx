@@ -1,6 +1,7 @@
-import React from 'react';
+import { MdOutlineHowToVote } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-const footer_menu = [
+
+const FOOTER_MENU = [
   {
     title: 'Home',
     link: '/',
@@ -19,7 +20,7 @@ const footer_menu = [
   },
 ];
 
-const contributors = [
+const CONTRIBUTORS = [
   {
     title: 'Imran Hasan Ovi',
     profile: 'https://avatars.githubusercontent.com/u/121815437?v=4',
@@ -54,44 +55,39 @@ const contributors = [
 
 const Footer = () => {
   return (
-    <footer className="container flex justify-center items-center pt-24 pb-20 mx-auto text-center">
-      <div className="text-sm text-center">
-        <Link to="/">
-          <h1 className="py-2 text-xl font-extrabold text-white shadow-sm">
-            Scouts<span className="text-accent-500">poll</span>
-          </h1>
-        </Link>
-        <ul className="flex justify-center">
-          {footer_menu?.map(({ title, link }, i) => (
+    <footer className="container flex flex-col gap-3 justify-center items-center py-10 mx-auto mt-20 text-center">
+      <h2 className="flex items-center text-2xl font-bold text-white font-secondary">
+        <MdOutlineHowToVote className="text-3xl text-accent-500 me-1" />
+        Scouts<span className="text-accent-500">poll</span>
+      </h2>
+      {/* <ul className="flex justify-center">
+          {FOOTER_MENU?.map(({ title, link }, i) => (
             <li className="list-none" key={i}>
               <Link className="flex px-2 hover:text-blue-600" to={link}>
                 {title}
               </Link>
             </li>
           ))}
-        </ul>
-        <h3 className="text-center text-lg font-semibold pt-3">
-          Development Team
-        </h3>
-        <ul className="flex justify-center pt-3 pb-6">
-          {contributors?.map(({ title, profile, path }, i) => (
-            <a href={path} target="_blank" key={i}>
-              <img
-                className="w-10 rounded-full border border-slate-500 shadow-sm mx-3"
-                src={profile}
-                alt=""
-                title={title}
-              />
-            </a>
-          ))}
-        </ul>
-        <p>
-          Copyright © 2023 - All right reserved by Team{' '}
-          <Link to="/" className="font-bold text-green-500">
-            Script Scouts
-          </Link>
-        </p>
-      </div>
+        </ul> */}
+      <h3 className="text-lg font-semibold">Development Team</h3>
+      <ul className="flex gap-2 justify-center items-center sm:gap-4">
+        {CONTRIBUTORS?.map(({ title, profile, path }) => (
+          <a href={path} target="_blank" key={path}>
+            <img
+              className="w-8 rounded-full border shadow-sm sm:w-12 border-primary-600"
+              src={profile}
+              alt={title}
+              title={title}
+            />
+          </a>
+        ))}
+      </ul>
+      <p className="px-5 pt-4 text-sm text-primary-300">
+        Copyright © 2023 - All right reserved by Team{' '}
+        <Link to="/" className="font-bold text-accent-500">
+          Script Scouts
+        </Link>
+      </p>
     </footer>
   );
 };

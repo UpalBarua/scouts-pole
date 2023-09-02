@@ -5,6 +5,7 @@ import Button from './ui/button';
 
 const ResultChart = ({ pollId, handleVoteAgain }) => {
   const [pollData, setPollData] = useState([]) || [];
+
   useEffect(() => {
     axios
       .get(`/polls/${pollId}`)
@@ -33,7 +34,6 @@ const ResultChart = ({ pollId, handleVoteAgain }) => {
     midAngle,
     innerRadius,
     outerRadius,
-    percent,
     index,
   }) => {
     const radiusMultiplier = isSmallScreen ? 0.5 : 1.2;
@@ -63,7 +63,7 @@ const ResultChart = ({ pollId, handleVoteAgain }) => {
       let content;
       if (typeof name === 'string') {
         content = (
-          <div className="p-2 text-black bg-white">
+          <div className="p-3 text-sm rounded-lg shadow bg-primary-700">
             {image && <img src={image} alt="Option" width="100" height="100" />}
             {image ? (
               <p>
@@ -86,16 +86,14 @@ const ResultChart = ({ pollId, handleVoteAgain }) => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h2 className="flex flex-col items-center text-2xl font-bold text-emerald-500">
-        Poll results :
-        <span className="text-sm font-normal text-gray-500">
-          {' '}
+      <h2 className="flex flex-col items-center text-2xl font-bold text-white font-secondary">
+        Poll results
+        <span className="text-sm text-primary-300">
           click or hover to see more
         </span>
       </h2>
-
       <div className="overflow-auto chart-container">
-        <PieChart width={isSmallScreen ? 300 : 400} height={300}>
+        <PieChart width={isSmallScreen ? 220 : 400} height={300}>
           <Pie
             data={data}
             cx={isSmallScreen ? '50%' : '50%'}
@@ -110,19 +108,12 @@ const ResultChart = ({ pollId, handleVoteAgain }) => {
               <Cell
                 key={`cell-${index}`}
                 fill={COLORS[index % COLORS.length]}
-                // fill='#272730' // uncomment if donot want to show color variant
               />
             ))}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </div>
-      {/* <button
-        variant="primary"
-        onClick={() => handleVoteAgain(true)}
-        className="px-4 py-2 my-2 text-white bg-blue-500 rounded hover:bg-blue-700">
-        Vote again
-      </button> */}
     </div>
   );
 };
