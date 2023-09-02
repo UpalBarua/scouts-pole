@@ -1,13 +1,14 @@
 import clsx from 'clsx';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { BiImageAdd } from 'react-icons/bi';
 import { CgSpinner } from 'react-icons/cg';
 import { IoMdClose } from 'react-icons/io';
 import axios from '../api/axios';
 import Button from '../components/ui/button';
 import uploadImage from '../utilities/uploadImage';
-import toast from 'react-hot-toast';
+import { successToast } from '../utilities/toast';
 
 const NewPoll = () => {
   const [optionInputFields, setOptionInputFields] = useState([null]);
@@ -47,7 +48,7 @@ const NewPoll = () => {
 
       await axios.post('/polls', newPoll);
 
-      toast.success('Poll added');
+      successToast('Poll added');
       setOptionImages([]);
       setOptionInputFields([null]);
       reset();

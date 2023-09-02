@@ -5,7 +5,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 import { PhotoView } from 'react-photo-view';
 import { twMerge } from 'tailwind-merge';
 
-const PollOption = ({ _id, option, optionImage, votes }) => {
+const PollOption = ({ _id, option, optionImage }) => {
   return (
     <RadioGroup.Option
       value={_id}

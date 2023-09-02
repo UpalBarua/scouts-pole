@@ -1,10 +1,9 @@
-import axios from '../api/axios';
 import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import Button from './ui/button';
+import { Cell, Pie, PieChart, Tooltip } from 'recharts';
+import axios from '../api/axios';
 
-const ResultChart = ({ pollId, handleVoteAgain }) => {
-  const [pollData, setPollData] = useState([]) || [];
+const ResultChart = ({ pollId }) => {
+  const [pollData, setPollData] = useState([]);
 
   useEffect(() => {
     axios

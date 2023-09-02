@@ -1,9 +1,8 @@
-import { BiSearch } from 'react-icons/bi';
-import usePolls from '../hooks/use-polls';
-import { CgSpinner } from 'react-icons/cg';
-import PollCard from '../components/poll-card/poll-card';
 import { useEffect, useState } from 'react';
+import { BiSearch } from 'react-icons/bi';
+import PollCard from '../components/poll-card/poll-card';
 import LoadingSpinner from '../components/ui/loading-spinner';
+import usePolls from '../hooks/use-polls';
 
 const HistoryPage = () => {
   const { polls, pollsLoading, pollsError } = usePolls('inactive');

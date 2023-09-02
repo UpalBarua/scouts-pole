@@ -1,12 +1,11 @@
+import { Menu, Transition } from '@headlessui/react';
 import { Fragment, useState } from 'react';
-import { Menu } from '@headlessui/react';
-import { Transition } from '@headlessui/react';
-import { BiMenu } from 'react-icons/bi';
-import ConfirmationModal from '../ui/confirmation-modal';
 import { toast } from 'react-hot-toast';
-import axios from '../../api/axios';
-import { Link } from 'react-router-dom';
 import { BsThreeDotsVertical } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import axios from '../../api/axios';
+import ConfirmationModal from '../ui/confirmation-modal';
+import { successToast, errorToast } from '../../utilities/toast';
 
 const PollMenu = ({ pollId, isActive }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,10 +14,10 @@ const PollMenu = ({ pollId, isActive }) => {
     try {
       await axios.delete(`/polls/${pollId}`);
       window.location.reload();
-      toast.success('Poll deleted');
+      successToast('Poll deleted');
     } catch (error) {
       console.error(error);
-      toast.error('Something went wrong');
+      errorToast('Something went wrong');
     } finally {
       setIsModalOpen(false);
     }

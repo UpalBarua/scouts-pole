@@ -4,11 +4,11 @@ import {
   MdOutlineHome,
   MdOutlineHowToVote,
 } from 'react-icons/md';
-import { Link, NavLink, useSubmit } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth-context';
+import useUser from '../../hooks/use-user';
 import LogoutButton from '../logout-button';
 import MobileMenu from './mobile-menu';
-import useUser from '../../hooks/use-user';
 
 const MENU_OPTIONS = [
   {

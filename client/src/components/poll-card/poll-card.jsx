@@ -6,9 +6,10 @@ import axios from '../../api/axios';
 import useUser from '../../hooks/use-user';
 import ResultChart from '../result-chart';
 import Button from '../ui/button';
-import PollOption from './poll-option';
+import CountdownTimer from './countdown-timer';
 import PollMenu from './pole-menu';
-import CountdownTimer from './CountdownTimer';
+import PollOption from './poll-option';
+import { successToast, errorToast } from '../../utilities/toast';
 
 const PollCard = ({
   _id,
@@ -19,8 +20,8 @@ const PollCard = ({
   isActive,
 }) => {
   const { userData } = useUser();
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [displayResults, setDisplayResults] = useState(false);
 
   useEffect(() => {
@@ -36,12 +37,12 @@ const PollCard = ({
       setIsSubmitting(true);
 
       if (!selectedOption) {
-        return toast.error('No option selected');
+        return errorToast('No option selected');
       }
 
       if (!userData?._id) {
         console.log(userData);
-        return toast.error('Something went wrong');
+        return errorToast('Something went wrong');
       }
 
       await axios.patch(`/polls/${_id}`, {
@@ -49,10 +50,10 @@ const PollCard = ({
         optionId: selectedOption,
       });
 
-      toast.success('Vote submitted');
+      successToast('Vote submitted');
     } catch (error) {
       console.error(error);
-      toast.error('Something went wrong');
+      errorToast('Something went wrong');
     } finally {
       setIsSubmitting(false);
     }
@@ -93,13 +94,11 @@ const PollCard = ({
         </>
       )}
       <div className="flex flex-col gap-3 justify-between pt-5 sm:items-center sm:flex-row">
-        <p>
-          <CountdownTimer
-            expiresAt={expiresAt}
-            onExpire={() => handlePollActiveToggle(_id)}
-            isActive={isActive}
-          />
-        </p>
+        <CountdownTimer
+          expiresAt={expiresAt}
+          onExpire={() => handlePollActiveToggle(_id)}
+          isActive={isActive}
+        />
         <div className="flex gap-2 justify-end items-center">
           <Button
             variant="secondary"

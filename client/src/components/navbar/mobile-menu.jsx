@@ -1,8 +1,8 @@
 import { Menu, Transition } from '@headlessui/react';
 import React, { Fragment } from 'react';
+import { HiMenuAlt3 } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../logout-button';
-import { HiMenuAlt3 } from 'react-icons/hi';
 
 const MobileMenu = ({ menuOptions, userRole }) => {
   return (
@@ -36,9 +36,7 @@ const MobileMenu = ({ menuOptions, userRole }) => {
               New Poll
             </Menu.Item>
           ) : null}
-          <Menu.Item>
-            <LogoutButton />
-          </Menu.Item>
+          {userRole ? <Menu.Item as={LogoutButton} /> : null}
         </Menu.Items>
       </Transition>
     </Menu>

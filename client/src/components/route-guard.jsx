@@ -1,19 +1,15 @@
 import React from 'react';
-import useUser from '../hooks/use-user';
 import { Navigate } from 'react-router-dom';
-import { CgSpinner } from 'react-icons/cg';
+import LoadingSpinner from '../components/ui/loading-spinner';
 import { useAuth } from '../contexts/auth-context';
+import useUser from '../hooks/use-user';
 
 const RouteGuard = ({ children, isAdminRoute }) => {
   const { user, authLoading } = useAuth();
   const { userData } = useUser();
 
   if (authLoading) {
-    return (
-      <div className="flex justify-center items-center h-64 text-6xl">
-        <CgSpinner className="animate-spin" />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   if (!user) {

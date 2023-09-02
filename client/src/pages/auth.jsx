@@ -6,14 +6,12 @@ import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
 import authIllustration from '../assets/auth-illustration.svg';
 import { auth, googleAuth } from '../firebase/firebase.config';
-import useUser from '../hooks/use-user';
 import createUser from '../utilities/createUser';
+import { successToast } from '../utilities/toast';
 
 const AuthPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  const { user } = useUser();
 
   const handleAuth = async () => {
     try {
@@ -21,7 +19,11 @@ const AuthPage = () => {
       const { user } = await signInWithPopup(auth, googleAuth);
       console.log(user);
       await createUser(user?.displayName, user?.email);
-      toast.success('Logged in successfully');
+      successToast('Logged in successfully', {
+        style: {
+          backgroundColor: '#32313f',
+        },
+      });
       navigate('/');
     } catch (error) {
       console.error(error);
@@ -29,10 +31,6 @@ const AuthPage = () => {
       setIsLoading(false);
     }
   };
-
-  // if (user._id) {
-  //   return <Navigate to="/404" />;
-  // }
 
   return (
     <section className="flex justify-center items-center h-[80dvh]">
@@ -47,7 +45,7 @@ const AuthPage = () => {
             process
           </p>
           <button
-            className="flex gap-2 items-center px-5 py-3 font-medium rounded-lg shadow-sm bg-primary-700 hover:bg-primary-900"
+            className="flex gap-2 items-center px-5 py-3 font-medium rounded-lg border shadow-sm bg-primary-700 hover:bg-primary-900 border-primary-600"
             disabled={isLoading}
             onClick={handleAuth}>
             {isLoading ? (
