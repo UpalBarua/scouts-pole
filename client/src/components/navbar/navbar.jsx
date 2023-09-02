@@ -4,10 +4,11 @@ import {
   MdOutlineHome,
   MdOutlineHowToVote,
 } from 'react-icons/md';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useSubmit } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth-context';
 import LogoutButton from '../logout-button';
 import MobileMenu from './mobile-menu';
+import useUser from '../../hooks/use-user';
 
 const MENU_OPTIONS = [
   {
@@ -20,15 +21,16 @@ const MENU_OPTIONS = [
     link: '/history',
     Icon: <MdHistory className="text-xl md:text-2xl" />,
   },
-  {
-    title: 'New Poll',
-    link: '/new-poll',
-    Icon: <MdOutlineCreate className="text-xl md:text-2xl" />,
-  },
+  // {
+  //   title: 'New Poll',
+  //   link: '/new-poll',
+  //   Icon: <MdOutlineCreate className="text-xl md:text-2xl" />,
+  // },
 ];
 
 const Navbar = () => {
   const { user } = useAuth();
+  const { userData } = useUser();
 
   return (
     <header className="container flex sticky top-0 z-20 justify-between items-center py-2 md:py-3 bg-primary-800">
@@ -52,13 +54,23 @@ const Navbar = () => {
               </NavLink>
             </li>
           ))}
+          {userData?.role === 'admin' ? (
+            <li>
+              <NavLink
+                className="flex gap-1 items-center px-4 py-2 font-medium rounded-lg transition-colors md:text-lg hover:bg-primary-700 hover:text-white"
+                to="/new-poll">
+                <MdOutlineCreate className="text-xl md:text-2xl" />
+                <span>New Poll</span>
+              </NavLink>
+            </li>
+          ) : null}
           {user ? (
             <li>
               <LogoutButton />
             </li>
           ) : null}
         </ul>
-        <MobileMenu menuOptions={MENU_OPTIONS} />
+        <MobileMenu menuOptions={MENU_OPTIONS} userRole={userData?.role} />
       </nav>
     </header>
   );

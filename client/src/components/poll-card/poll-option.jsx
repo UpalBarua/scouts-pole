@@ -2,6 +2,7 @@ import { RadioGroup } from '@headlessui/react';
 import clsx from 'clsx';
 import React from 'react';
 import { BsCheckCircleFill } from 'react-icons/bs';
+import { PhotoView } from 'react-photo-view';
 import { twMerge } from 'tailwind-merge';
 
 const PollOption = ({ _id, option, optionImage, votes }) => {
@@ -36,11 +37,14 @@ const PollOption = ({ _id, option, optionImage, votes }) => {
               )}
             </div>
             {optionImage ? (
-              <img
-                className="object-cover object-center mt-2 w-full rounded-lg"
-                src={optionImage}
-                alt={option}
-              />
+              <PhotoView src={optionImage}>
+                <img
+                  onClick={(e) => e.preventDefault()}
+                  className="object-cover object-center mt-2 w-full h-40 rounded-lg sm:h-56"
+                  src={optionImage}
+                  alt={option}
+                />
+              </PhotoView>
             ) : null}
           </div>
         </>

@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
+import { format } from 'date-fns';
 
 const CountdownTimer = ({ expiresAt, onExpire, isActive }) => {
   const formatRemainingTime = (expiresAt) => {
     if (!isActive) {
-      return `Expired on ${expiresAt}`;
+      return `Expired on ${format(
+        new Date(expiresAt),
+        'do MMMM yyyy hh:mm a'
+      )}`;
     }
 
     const currentDate = new Date();
@@ -21,7 +25,7 @@ const CountdownTimer = ({ expiresAt, onExpire, isActive }) => {
     );
     const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
 
-    return `${days} days ${hours} hours ${minutes} minutes`;
+    return `${days} days ${hours} hours ${minutes} minutes remaining`;
   };
 
   const [remainingTime, setRemainingTime] = useState(

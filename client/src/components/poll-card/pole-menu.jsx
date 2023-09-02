@@ -26,7 +26,7 @@ const PollMenu = ({ pollId, isActive }) => {
 
   return (
     <Menu as="div" className="inline-block relative text-left">
-      <Menu.Button className="text-2xl p-1.5 rounded-md">
+      <Menu.Button className="text-2xl p-1.5 rounded-md hover:bg-primary-800 hover:text-white">
         <BsThreeDotsVertical />
       </Menu.Button>
       <Transition
@@ -57,8 +57,10 @@ const PollMenu = ({ pollId, isActive }) => {
       <ConfirmationModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        title={'Delete this poll'}
-        description={"this poll will be deleted and you can't recover it"}
+        title={'Delete Poll?'}
+        description={
+          'This poll will be permanently removed, and it cannot be recovered'
+        }
         onConfirm={() => handleDelete(pollId)}
       />
     </Menu>

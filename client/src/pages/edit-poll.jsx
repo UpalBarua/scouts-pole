@@ -113,7 +113,7 @@ const EditPollPage = () => {
         Edit Poll
       </h2>
       <form
-        className="px-1 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
+        className="px-1 mx-auto space-y-5 max-w-xl rounded-xl sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
         onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="space-y-2">
           <label className="font-medium">Title</label>
@@ -199,7 +199,7 @@ const EditPollPage = () => {
                   <BiImageAdd />
                 </label>
                 <button
-                  className="p-2 text-2xl text-white bg-red-500 rounded-lg"
+                  className="p-2 text-2xl text-white bg-red-500 rounded-lg hover:bg-red-500/90"
                   onClick={() => removeInputField(index)}>
                   <IoMdClose />
                 </button>

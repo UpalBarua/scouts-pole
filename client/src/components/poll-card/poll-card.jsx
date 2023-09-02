@@ -69,7 +69,7 @@ const PollCard = ({
   };
 
   return (
-    <div className="p-4 mx-auto space-y-2 w-full rounded-lg border shadow border-primary-700 sm:p-6 bg-primary-900 md:max-w-2xl">
+    <div className="p-4 mx-auto space-y-2 w-full rounded-lg border shadow border-primary-700 sm:p-6 bg-primary-900 md:w-[42rem]">
       {displayResults ? (
         <ResultChart voter={userData} pollId={_id} />
       ) : (
@@ -99,7 +99,6 @@ const PollCard = ({
             onExpire={() => handlePollActiveToggle(_id)}
             isActive={isActive}
           />
-          <span> Left</span>
         </p>
         <div className="flex gap-2 justify-end items-center">
           <Button

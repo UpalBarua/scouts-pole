@@ -17,8 +17,12 @@ const HomePage = () => {
           <div className="flex items-center h-[50dvh] justify-center text-2xl font-semibold text-red-500/80 text-center">
             <p>Failed to load polls</p>
           </div>
-        ) : (
+        ) : polls.length ? (
           polls?.map((poll) => <PollCard key={poll._id} {...poll} />)
+        ) : (
+          <div className="flex items-center h-[50dvh] justify-center text-2xl font-semibold text-primary-300 text-center">
+            <p>No currently active polls</p>
+          </div>
         )}
       </section>
     </main>

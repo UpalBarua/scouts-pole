@@ -81,7 +81,7 @@ const NewPoll = () => {
         Add a new poll
       </h2>
       <form
-        className="px-1 mx-auto space-y-5 max-w-xl rounded-lg sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
+        className="px-1 mx-auto space-y-5 max-w-xl rounded-xl sm:p-8 sm:border border-primary-700 sm:shadow sm:bg-primary-900"
         onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="space-y-2">
           <label className="font-medium">Title</label>
@@ -159,7 +159,7 @@ const NewPoll = () => {
                 />
                 <label
                   className={clsx(
-                    'p-2 text-2xl text-white rounded-lg border border-primary-500',
+                    'p-2 text-2xl text-white rounded-lg border border-primary-500 cursor-pointer',
                     !optionImages[index] && 'bg-primary-600',
                     optionImages[index] && 'bg-accent-500'
                   )}
@@ -167,7 +167,7 @@ const NewPoll = () => {
                   <BiImageAdd />
                 </label>
                 <button
-                  className="p-2 text-2xl text-white bg-red-500 rounded-lg"
+                  className="p-2 text-2xl text-white bg-red-500 rounded-lg hover:bg-red-500/90"
                   onClick={() => removeInputField(index)}>
                   <IoMdClose />
                 </button>

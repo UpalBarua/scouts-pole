@@ -50,7 +50,7 @@ const LogoutButton = ({ className }) => {
       </Button>
       <ConfirmationModal
         title={'Logout?'}
-        description={'do you really want to logout?'}
+        description={'Are you sure you want to log out?'}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         onConfirm={handleLogout}

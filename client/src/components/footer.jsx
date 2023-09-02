@@ -55,7 +55,7 @@ const CONTRIBUTORS = [
 
 const Footer = () => {
   return (
-    <footer className="container flex flex-col gap-3 justify-center items-center py-10 mx-auto text-center">
+    <footer className="container flex flex-col gap-3 justify-center items-center py-10 mx-auto mt-20 text-center">
       <h2 className="flex items-center text-2xl font-bold text-white font-secondary">
         <MdOutlineHowToVote className="text-3xl text-accent-500 me-1" />
         Scouts<span className="text-accent-500">poll</span>
