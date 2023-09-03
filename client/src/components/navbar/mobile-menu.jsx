@@ -4,7 +4,7 @@ import { HiMenuAlt3 } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../logout-button';
 
-const MobileMenu = ({ menuOptions, userRole }) => {
+const MobileMenu = ({ menuOptions, userRole,user }) => {
   return (
     <Menu as="div" className="inline-block relative text-left md:hidden">
       <Menu.Button className="p-1.5 text-2xl rounded-md bg-primary-900 border border-primary-700 hover:bg-primary-950/50 hover:border-primary-600 shadow-sm">
@@ -36,7 +36,7 @@ const MobileMenu = ({ menuOptions, userRole }) => {
               New Poll
             </Menu.Item>
           ) : null}
-          {userRole ? <Menu.Item as={LogoutButton} /> : null}
+          {user ? <Menu.Item as={LogoutButton} /> : null}
         </Menu.Items>
       </Transition>
     </Menu>
